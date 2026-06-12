@@ -445,6 +445,8 @@ jobs:
 
 <p align="right">
   <a href="chapter27-github-api.md">← 上一章</a>
+  &nbsp;|&nbsp;
+  <a href="appendix-a-project-structure.md">附录A：项目文件组成 →</a>
 </p>
 
 ---
