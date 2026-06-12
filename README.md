@@ -81,10 +81,10 @@
 
 | 章节 | 内容 | 状态 |
 |------|------|------|
-| [第25章：Git 高级命令](docs/chapter25-git-advanced.md) | Rebase、Cherry-pick、Bisect | 📝 编写中 |
-| [第26章：GitHub CLI 使用](docs/chapter26-gh-cli.md) | 命令行管理 GitHub | 📝 编写中 |
-| [第27章：GitHub API 详解](docs/chapter27-github-api.md) | 使用 API 开发工具 | 📝 编写中 |
-| [第28章：企业级最佳实践](docs/chapter28-best-practices.md) | 大型项目的协作流程 | 📝 编写中 |
+| [第25章：Git 高级命令](docs/chapter25-git-advanced.md) | Rebase、Cherry-pick、Bisect | ✅ 已完成 |
+| [第26章：GitHub CLI 使用](docs/chapter26-gh-cli.md) | 命令行管理 GitHub | ✅ 已完成 |
+| [第27章：GitHub API 详解](docs/chapter27-github-api.md) | 使用 API 开发工具 | ✅ 已完成 |
+| [第28章：企业级最佳实践](docs/chapter28-best-practices.md) | 大型项目的协作流程 | ✅ 已完成 |
 
 ## 🎯 快速开始
 
