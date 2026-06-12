@@ -1,11 +1,15 @@
-# GitHub 百科全书 📚
+# 📚 GitHub 百科全书
 
-> 从零开始，带你掌握 GitHub 的每一个细节
+> 🎯 从零开始，带你掌握 GitHub 的每一个细节 —— 全中文、免费、开源
 
 ![GitHub stars](https://img.shields.io/github/stars/GTX950L/github-encyclopedia?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/GTX950L/github-encyclopedia?style=social)
 ![GitHub contributors](https://img.shields.io/github/contributors/GTX950L/github-encyclopedia)
 ![License](https://img.shields.io/github/license/GTX950L/github-encyclopedia)
+![Discussions](https://img.shields.io/github/discussions/GTX950L/github-encyclopedia)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=GTX950L%2Fgithub-encyclopedia&countColor=%23263759)](https://visitorbadge.io)
+[![GitHub last commit](https://img.shields.io/github/last-commit/GTX950L/github-encyclopedia)](https://github.com/GTX950L/github-encyclopedia/commits)
 
 ## 🎯 项目简介
 
@@ -131,6 +135,10 @@
 - 📝 总字数：约 17 万字
 - 📦 快速入门：附带 [快速入门指南](docs/quick-start.md)
 - 👥 贡献者：欢迎加入！
+
+## 🌟 Star 历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=GTX950L/github-encyclopedia&type=Date)](https://star-history.com/#GTX950L/github-encyclopedia&Date)
 
 ## 🗺️ 学习路线图
 
