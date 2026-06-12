@@ -323,7 +323,7 @@ Settings → Actions → Runners → Add runner
 
 - [第20章：GitHub Pages 搭建网站](chapter20-pages-website.md) - 免费托管个人博客
 - [第27章：GitHub API 详解](chapter27-github-api.md) - 使用 API 开发工具
-- [附录B：GitHub Actions 市场](appendix-b-actions-marketplace.md) - 查找现成的 Actions
+- [附录C：GitHub Actions 市场](appendix-c-actions-marketplace.md) - 查找现成的 Actions
 
 ---
 

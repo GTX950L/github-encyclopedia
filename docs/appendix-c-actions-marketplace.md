@@ -1,4 +1,4 @@
-# 附录B：GitHub Actions 市场常用 Actions 🛒
+# 附录C：GitHub Actions 市场常用 Actions 🛒
 
 > 不用重复造轮子！这些现成的 Actions 直接拿来用
 
@@ -202,7 +202,7 @@ jobs:
 ---
 
 <p align="right">
-  <a href="chapter19-actions-intro.md">← 回到第19章</a>
+  <a href="appendix-b-git-commands.md">← 附录B：Git 命令速查</a>
   &nbsp;|&nbsp;
-  <a href="appendix-b-git-commands.md">← Git 命令速查</a>
+  <a href="appendix-d-jekyll-themes.md">附录D：Jekyll 主题 →</a>
 </p>

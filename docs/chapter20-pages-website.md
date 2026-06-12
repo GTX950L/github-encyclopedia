@@ -124,7 +124,7 @@ git push origin main
 
 推荐服务商：
 - 国内：阿里云、腾讯云
-- 国外：Namecheap、Godady
+- 国外：Namecheap、GoDaddy
 
 #### 第2步：添加 CNAME 文件
 
@@ -315,7 +315,7 @@ Cmd + Shift + R  # macOS
 ## 📚 延伸阅读
 
 - [第19章：GitHub Actions](chapter19-actions-intro.md) - 自动部署网站
-- [附录C：常用 Jekyll 主题](appendix-c-jekyll-themes.md) - 更多主题选择
+- [附录D：常用 Jekyll 主题](appendix-d-jekyll-themes.md) - 更多主题选择
 
 ---
 

@@ -92,7 +92,8 @@
 |------|------|------|
 | [附录A：项目文件组成说明](docs/appendix-a-project-structure.md) | 各文件的作用与规范 | ✅ 已完成 |
 | [附录B：Git 命令速查表](docs/appendix-b-git-commands.md) | 常用 Git 命令快速查找 | ✅ 已完成 |
-| [附录C：GitHub Actions 市场](docs/appendix-b-actions-marketplace.md) | 推荐 Actions 与模板 | ✅ 已完成 |
+| [附录C：GitHub Actions 市场](docs/appendix-c-actions-marketplace.md) | 推荐 Actions 与模板 | ✅ 已完成 |
+| [附录D：Jekyll 主题推荐](docs/appendix-d-jekyll-themes.md) | GitHub Pages 主题选择 | ✅ 已完成 |
 
 ## 🎯 快速开始
 
@@ -126,7 +127,7 @@
 
 ## 📊 项目统计
 
-- 📚 总章节数：28 章 + 3 个附录
+- 📚 总章节数：28 章 + 4 个附录
 - 📝 总字数：约 17 万字
 - 📦 快速入门：附带 [快速入门指南](docs/quick-start.md)
 - 👥 贡献者：欢迎加入！

@@ -130,11 +130,11 @@ gh auth login
 
 ---
 
-## 常用命令#
+## 常用命令
 
-### 1️⃣ 仓库操作#
+### 1️⃣ 仓库操作
 
-#### 创建仓库#
+#### 创建仓库
 
 ```bash
 # 在当前目录创建仓库并推送到 GitHub
@@ -144,7 +144,7 @@ gh repo create my-project --public --source=. --push
 gh repo create my-private-project --private --source=. --push
 ```
 
-#### 克隆仓库#
+#### 克隆仓库
 
 ```bash
 # 基本格式
@@ -157,7 +157,7 @@ gh repo clone GTX950L/github-encyclopedia
 gh repo clone GTX950L/github-encyclopedia -- my-encyclopedia
 ```
 
-#### 查看仓库列表#
+#### 查看仓库列表
 
 ```bash
 # 查看你的所有仓库
@@ -172,9 +172,9 @@ gh repo list --json name --jq '.[].name'
 
 ---
 
-### 2️⃣ Issue 操作#
+### 2️⃣ Issue 操作
 
-#### 创建 Issue#
+#### 创建 Issue
 
 ```bash
 # 命令行交互式创建
@@ -187,7 +187,7 @@ gh issue create --title "Bug: 登录失败" --body "描述..."
 gh issue create --title "Feature: 深色模式" --body-file feature.md
 ```
 
-#### 列出 Issue#
+#### 列出 Issue
 
 ```bash
 # 列出所有打开的 Issue
@@ -200,7 +200,7 @@ gh issue list --label bug
 gh issue list --assignee @me
 ```
 
-#### 查看 Issue#
+#### 查看 Issue
 
 ```bash
 # 查看某个 Issue
@@ -215,9 +215,9 @@ gh issue view 123 --comments
 
 ---
 
-### 3️⃣ PR 操作#
+### 3️⃣ PR 操作
 
-#### 创建 PR#
+#### 创建 PR
 
 ```bash
 # 交互式创建（推荐）✅
@@ -230,7 +230,7 @@ gh pr create --title "添加登录功能" --body "描述..."
 gh pr create --base develop --head feature/login
 ```
 
-#### 列出 PR#
+#### 列出 PR
 
 ```bash
 # 列出所有打开的 PR
@@ -240,7 +240,7 @@ gh pr list
 gh pr list --review-requested
 ```
 
-#### 审查 PR#
+#### 审查 PR
 
 ```bash
 # 查看某个 PR 的代码变更
@@ -250,7 +250,7 @@ gh pr view 123
 gh pr checkout 123
 ```
 
-#### 合并 PR#
+#### 合并 PR
 
 ```bash
 # 合并 PR（自动检测合并方式）
@@ -264,9 +264,9 @@ gh pr merge 123 --merge    # 普通合并
 
 ---
 
-### 4️⃣ 实用命令#
+### 4️⃣ 实用命令
 
-#### 快速打开浏览器#
+#### 快速打开浏览器
 
 ```bash
 # 打开当前仓库的 GitHub 页面
@@ -279,7 +279,7 @@ gh issue view 123 --web
 gh browse --actions
 ```
 
-#### 查看通知#
+#### 查看通知
 
 ```bash
 # 在终端查看通知
@@ -289,7 +289,7 @@ gh notification
 gh notification --all
 ```
 
-#### 生成 Token#
+#### 生成 Token
 
 ```bash
 # 生成新的 Token
@@ -298,9 +298,9 @@ gh auth token
 
 ---
 
-## 高级技巧#
+## 高级技巧
 
-### 1️⃣ 配置别名（Alias）✅ 推荐！#
+### 1️⃣ 配置别名（Alias）✅ 推荐！
 
 ```bash
 # 给常用命令设置别名
@@ -314,9 +314,9 @@ gh prs     # 等效于：gh pr list --review-requested
 
 ---
 
-### 2️⃣ 批量操作#
+### 2️⃣ 批量操作
 
-#### 示例：给所有仓库点 Star#
+#### 示例：给所有仓库点 Star
 
 ```bash
 # 获取你的所有仓库，然后点 Star
@@ -327,7 +327,7 @@ while read repo; do
 done
 ```
 
-#### 示例：批量关闭 Issue#
+#### 示例：批量关闭 Issue
 
 ```bash
 # 关闭所有带有 "wontfix" 标签的 Issue
@@ -340,9 +340,9 @@ done
 
 ---
 
-### 3️⃣ 在脚本中使用 `gh`#
+### 3️⃣ 在脚本中使用 `gh`
 
-#### 示例：自动创建每日 Issue#
+#### 示例：自动创建每日 Issue
 
 ```bash
 #!/bin/bash
@@ -372,7 +372,7 @@ gh issue create --title "$TITLE" --body "$BODY"
 
 ---
 
-## 常见问题#
+## 常见问题
 
 ### Q1: `gh` 命令和 `git` 命令有什么区别？
 
@@ -433,9 +433,9 @@ echo $GITHUB_TOKEN | gh auth login --with-token
 
 ---
 
-## 📝 实战练习#
+## 📝 实战练习
 
-### 练习1：第一次使用 `gh`#
+### 练习1：第一次使用 `gh`
 
 **任务**：
 1. 安装 GitHub CLI
@@ -445,7 +445,7 @@ echo $GITHUB_TOKEN | gh auth login --with-token
 
 ---
 
-### 练习2：创建别名提高效率#
+### 练习2：创建别名提高效率
 
 **任务**：
 1. 设置别名：`issue` → `issue list --assignee @me`
@@ -454,7 +454,7 @@ echo $GITHUB_TOKEN | gh auth login --with-token
 
 ---
 
-### 练习3：编写自动化脚本#
+### 练习3：编写自动化脚本
 
 **任务**：
 1. 写一个脚本：自动创建 Issue
@@ -463,7 +463,7 @@ echo $GITHUB_TOKEN | gh auth login --with-token
 
 ---
 
-## 📚 延伸阅读#
+## 📚 延伸阅读
 
 - [第17章：GitHub Token 完全指南](chapter17-token-guide.md) - Token 的详细用法
 - [第27章：GitHub API 详解](chapter27-github-api.md) - 使用 API 开发工具
@@ -471,7 +471,7 @@ echo $GITHUB_TOKEN | gh auth login --with-token
 
 ---
 
-## 📝 本章小结#
+## 📝 本章小结
 
 你现在学会了：
 
@@ -480,7 +480,7 @@ echo $GITHUB_TOKEN | gh auth login --with-token
 - ✅ 常用命令（仓库、Issue、PR 操作）
 - ✅ 高级技巧（别名、批量操作、脚本自动化）
 
-### 💡 核心要点#
+### 💡 核心要点
 
 > **`gh` 是提升效率的神器！**
 > 

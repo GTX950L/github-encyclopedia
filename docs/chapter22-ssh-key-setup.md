@@ -37,11 +37,11 @@
 
 ---
 
-## 生成 SSH Key#
+## 生成 SSH Key
 
 ### 步骤详解
 
-#### 第1步：检查是否已有 SSH Key#
+#### 第1步：检查是否已有 SSH Key
 
 ```bash
 # 查看是否有现成的 Key
@@ -58,7 +58,7 @@ ls -al ~/.ssh
 
 ---
 
-#### 第2步：生成新的 SSH Key#
+#### 第2步：生成新的 SSH Key
 
 ```bash
 # 推荐使用 ed25519 算法（更安全、更快）
@@ -89,7 +89,7 @@ Enter same passphrase again:
 
 ---
 
-#### 第3步：启动 SSH Agent#
+#### 第3步：启动 SSH Agent
 
 ```bash
 # 启动 ssh-agent
@@ -103,11 +103,11 @@ ssh-add ~/.ssh/id_ed25519
 
 ---
 
-## 添加到 GitHub#
+## 添加到 GitHub
 
 ### 步骤详解
 
-#### 第1步：复制公钥#
+#### 第1步：复制公钥
 
 ```bash
 # 查看公钥内容
@@ -128,7 +128,7 @@ ssh-ed25519 AAAAC3NzaC1lE2EAAAAI... 你的邮箱@example.com
 
 ---
 
-#### 第2步：在 GitHub 上添加#
+#### 第2步：在 GitHub 上添加
 
 ```
 1. 登录 GitHub
@@ -144,9 +144,9 @@ ssh-ed25519 AAAAC3NzaC1lE2EAAAAI... 你的邮箱@example.com
 
 ---
 
-## 测试连接#
+## 测试连接
 
-### 测试命令#
+### 测试命令
 
 ```bash
 # 测试是否能连接 GitHub
@@ -170,7 +170,7 @@ Hi GTX950L! You've successfully authenticated, but GitHub does not provide shell
 
 ---
 
-### 修改远程仓库地址#
+### 修改远程仓库地址
 
 ```bash
 # 查看当前远程地址（大概率是 HTTPS）
@@ -193,7 +193,7 @@ git remote -v
 
 ---
 
-## 常见问题#
+## 常见问题
 
 ### Q1: 私钥泄露了怎么办？
 
@@ -241,7 +241,7 @@ git remote -v
 
 ---
 
-## 📝 实战练习#
+## 📝 实战练习
 
 ### 练习1：配置你的第一对 SSH Key
 
@@ -254,7 +254,7 @@ git remote -v
 
 ---
 
-### 练习2：为多台电脑配置#
+### 练习2：为多台电脑配置
 
 **任务**：
 1. 如果你有两台电脑（如公司和家里）
@@ -264,7 +264,7 @@ git remote -v
 
 ---
 
-## 📚 延伸阅读#
+## 📚 延伸阅读
 
 - [第17章：GitHub Token 完全指南](chapter17-token-guide.md) - Token 的详细用法
 - [第23章：两步验证（2FA）](chapter23-2fa-setup.md) - 保护账号安全
@@ -272,7 +272,7 @@ git remote -v
 
 ---
 
-## 📝 本章小结#
+## 📝 本章小结
 
 你现在学会了：
 
@@ -282,7 +282,7 @@ git remote -v
 - ✅ 如何测试连接并修改仓库地址
 - ✅ SSH Key 的安全管理
 
-### ⚠️ 安全提醒#
+### ⚠️ 安全提醒
 
 > **私钥 = 你的身份凭证，永远不要：**
 > - ❌ 提交到 GitHub

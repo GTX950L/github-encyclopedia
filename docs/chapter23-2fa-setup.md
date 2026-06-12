@@ -98,7 +98,7 @@
 
 ---
 
-## 恢复代码#
+## 恢复代码
 
 ### 为什么需要？
 
@@ -142,7 +142,7 @@
 
 ---
 
-## 常见问题#
+## 常见问题
 
 ### Q1: 换了手机，如何迁移 2FA？
 
@@ -195,9 +195,9 @@ Settings → Password and authentication → Regenerate recovery codes
 
 ---
 
-## 📝 实战练习#
+## 📝 实战练习
 
-### 练习1：开启 2FA#
+### 练习1：开启 2FA
 
 **任务**：
 1. 安装 Google Authenticator
@@ -207,7 +207,7 @@ Settings → Password and authentication → Regenerate recovery codes
 
 ---
 
-### 练习2：测试恢复代码#
+### 练习2：测试恢复代码
 
 **任务**：
 1. 故意不携带手机
@@ -217,14 +217,14 @@ Settings → Password and authentication → Regenerate recovery codes
 
 ---
 
-## 📚 延伸阅读#
+## 📚 延伸阅读
 
 - [第21章：常见安全问题](chapter21-security-issues.md) - 更多安全陷阱
 - [第24章：私钥与密钥管理](chapter24-key-management.md) - 安全管理所有密钥
 
 ---
 
-## 📝 本章小结#
+## 📝 本章小结
 
 你现在了解了：
 
@@ -233,7 +233,7 @@ Settings → Password and authentication → Regenerate recovery codes
 - ✅ 如何生成和使用恢复代码
 - ✅ 换手机时如何迁移
 
-### ⚠️ 安全提醒#
+### ⚠️ 安全提醒
 
 > **2FA 是保护 GitHub 账号的最重要措施！**
 > 

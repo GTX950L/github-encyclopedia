@@ -163,7 +163,7 @@ svn export https://github.com/user/repo/trunk/path/to/folder
 ---
 
 <p align="right">
-  <a href="appendix-a-project-structure.md">← 上一章</a>
+  <a href="appendix-a-project-structure.md">← 附录A</a>
   &nbsp;|&nbsp;
-  <a href="../README.md">返回首页 →</a>
+  <a href="appendix-c-actions-marketplace.md">附录C：Actions 市场 →</a>
 </p>

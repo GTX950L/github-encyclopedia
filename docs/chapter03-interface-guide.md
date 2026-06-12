@@ -396,6 +396,39 @@ GitHub 有官方移动 App（iOS 和 Android）。
 
 ---
 
+## 📝 实战练习
+
+### 练习1：探索个人主页
+
+**任务**：
+1. 登录 GitHub，进入你自己的个人主页
+2. 找到以下区域：Contributions 热力图、Repositories 列表、Pinned 仓库
+3. 尝试 Pin 一个仓库到你的首页
+
+### 练习2：熟悉仓库页面
+
+**任务**：
+1. 找一个你感兴趣的公开仓库
+2. 在这个仓库中找到：README 内容、文件列表、Issues 页面、Pull Requests 页面
+3. 记录每个页面的 URL 格式（观察 URL 模式）
+
+### 练习3：探索 Settings 页面
+
+**任务**：
+1. 进入 Settings → Developer settings
+2. 查看 Personal access tokens 页面（先不创建）
+3. 浏览左侧菜单，了解 Settings 有哪些子页面
+
+---
+
+## 📚 延伸阅读
+
+- [第4章：第一个仓库](chapter04-first-repository.md) - 创建你的第一个 GitHub 仓库
+- [第13章：Star 的意义](chapter13-star-meaning.md) - 深入了解 Star 的作用
+- [第17章：Token 完全指南](chapter17-token-guide.md) - Developer settings 中的 Token 详解
+
+---
+
 ## 📝 本章小结
 
 你现在应该了解了：
@@ -412,7 +445,7 @@ GitHub 有官方移动 App（iOS 和 Android）。
 
 ---
 
-## ❓ FAQ
+## 常见问题
 
 **Q: 为什么我的贡献图不显示绿色？**  
 A: 可能是邮箱设置问题。确保你提交代码时使用的邮箱是 GitHub 绑定的邮箱。
