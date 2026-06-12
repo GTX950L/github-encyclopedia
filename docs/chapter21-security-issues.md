@@ -215,14 +215,14 @@ https://github.com.verify-security.xyz/  ❌（假链接！）
 **示例**：
 
 ```
-Issue 标题：🐛 Critical security vulnerability found
+Issue 标题：🐛 发现严重安全漏洞
 
 内容：
-Hi, I found a critical vulnerability in your project.
-Please check this link to see the details:
+你好，我在你的项目中发现了严重漏洞。
+请点击此链接查看详情：
 https://malicious-site.xyz/github-exploit  ❌（恶意链接）
 
-You must apply this patch immediately:
+你必须立即应用此补丁：
 （附件：malicious-patch.zip） ❌（包含恶意代码）
 ```
 

@@ -241,17 +241,17 @@ GIF 展示：
 ### ❌ 不好的 README
 
 ```markdown
-# My Project
+# 我的项目
 
-This is my project.
+这是我的项目。
 
-## How to use
+## 使用方法
 
-It's very simple.
+很简单。
 
-## Contact
+## 联系方式
 
-Email me.
+给我发邮件。
 ```
 
 **问题**：

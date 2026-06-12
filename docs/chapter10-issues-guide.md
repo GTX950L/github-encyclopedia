@@ -164,43 +164,43 @@
 
 ```markdown
 ---
-name: Bug Report
-about: Create a report to help us improve
+name: Bug 报告
+about: 创建一份报告，帮助我们改进项目
 title: ''
 labels: 'bug'
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Bug 描述**
+清晰简洁地描述这个 Bug。
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '...'
-3. Scroll down to '...'
-4. See error
+**复现步骤**
+复现该行为的步骤：
+1. 前往 '...'
+2. 点击 '...'
+3. 向下滚动至 '...'
+4. 看到错误
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**预期行为**
+清晰简洁地描述你期望发生什么。
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**截图**
+如果适用，添加截图以帮助说明问题。
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**桌面端（请填写以下信息）：**
+ - 操作系统：[如 Windows 11]
+ - 浏览器：[如 Chrome, Edge]
+ - 版本：[如 120]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**手机端（请填写以下信息）：**
+ - 设备：[如 iPhone 15]
+ - 操作系统：[如 iOS 17]
+ - 浏览器：[如 自带浏览器, Safari]
+ - 版本：[如 120]
 
-**Additional context**
-Add any other context about the problem here.
+**补充说明**
+在此添加关于该问题的任何其他信息。
 ```
 
 ---
