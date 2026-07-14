@@ -1,0 +1,18 @@
+# 代码负责人（CODEOWNERS）
+# 当有人修改对应路径的文件时，自动指派给指定的人审查 PR
+
+# 全局负责人
+* @GTX950L
+
+# CI/CD 配置
+.github/workflows/ @GTX950L
+.github/dependabot.yml @GTX950L
+
+# 核心文档
+README.md @GTX950L
+docs/index.md @GTX950L
+docs/quick-start.md @GTX950L
+
+# 各章节
+docs/chapter*.md @GTX950L
+docs/appendix*.md @GTX950L

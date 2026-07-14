@@ -1,0 +1,47 @@
+name: ✨ 新章节 / 新功能 建议
+description: 建议新增某个主题的章节或补充内容
+title: "[建议]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你的建议！请描述你希望看到的内容。
+
+  - type: input
+    id: topic
+    attributes:
+      label: 建议主题
+      description: 你想补充什么内容？
+      placeholder: GitHub Sponsors / GitHub Classroom / ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: 为什么需要？
+      description: 这个内容对哪些读者有帮助？
+      placeholder: 很多新手不知道...
+    validations:
+      required: true
+
+  - type: textarea
+    id: outline
+    attributes:
+      label: 建议大纲
+      description: 你觉得应该包含哪些小点？
+      placeholder: |
+        1. 什么是 XX
+        2. 如何配置
+        3. 最佳实践
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 确认清单
+      options:
+        - label: 我已经搜索过已有的 Issues 和 Discussions，没有重复
+          required: true

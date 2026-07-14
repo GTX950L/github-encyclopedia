@@ -36,9 +36,9 @@
 
 ### 如何提交 Bug Report
 
-**请使用 [Bug Report 模板](https://github.com/GTX950L/github-encyclopedia/issues/new?template=bug_report.md)**（如果配置了的话），或者手动创建 Issue 并包含以下信息：
+**请使用 [Bug Report 模板](https://github.com/GTX950L/github-encyclopedia/issues/new?template=bug_report.yml)**（YAML 表单），或者手动创建 Issue 并包含以下信息：
 
-```markdown
+```yaml
 ## 🐛 Bug 描述
 
 简要描述这个 Bug。

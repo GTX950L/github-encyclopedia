@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 讨论交流（Discussions）
+    url: https://github.com/GTX950L/github-encyclopedia/discussions
+    about: 使用疑问、想法交流、问答请前往 Discussions
+  - name: 📖 在线阅读
+    url: https://gtx950l.github.io/github-encyclopedia/
+    about: 在线版百科全书（GitHub Pages）

@@ -1,0 +1,44 @@
+name: 🐛 内容错误 / Bug 报告
+description: 报告百科全书中的错误、错别字、失效链接或不准确的内容
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你花时间帮助改进这本百科全书！请尽量提供完整信息。
+
+  - type: input
+    id: chapter
+    attributes:
+      label: 涉及章节
+      description: 哪一章 / 哪个附录？
+      placeholder: 第5章 / 附录B
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 具体是什么问题？
+      placeholder: 这句话不准确 / 这个链接打不开 / 这里有错别字...
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 建议修改
+      description: 你认为应该改成什么？
+      placeholder: 建议改为...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 确认清单
+      options:
+        - label: 我已经搜索过已有的 Issues，没有重复
+          required: true

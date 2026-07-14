@@ -25,87 +25,21 @@
 
 ## 📖 内容结构
 
-本项目按照**学习路径**组织内容，你可以按顺序学习，也可以跳转到感兴趣的部分。
+本项目按照**学习路径**组织为 **30 章 + 5 个附录**（约 20 万字），覆盖从新手到资深玩家的全流程。
 
-### 🚀 第一阶段：初识 GitHub（新手入门）
-
-| 章节 | 内容 | 状态 |
+| 阶段 | 章节 | 定位 |
 |------|------|------|
-| [第1章：什么是 GitHub？](docs/chapter01-what-is-github.md) | GitHub 的历史、作用、为什么要用 | ✅ 已完成 |
-| [第2章：注册与设置](docs/chapter02-registration-setup.md) | 注册账号、个人资料、基本设置 | ✅ 已完成 |
-| [第3章：GitHub 界面全解析](docs/chapter03-interface-guide.md) | 每个按钮、每个页面的作用 | ✅ 已完成 |
-| [第4章：第一个仓库](docs/chapter04-first-repository.md) | 创建、删除、配置仓库 | ✅ 已完成 |
+| 🚀 **新手入门** | 第1-4章 | 认识 GitHub、注册、界面、第一个仓库 |
+| 🌟 **基础操作** | 第5-8章 | Clone、Commit、Branch、Merge |
+| 🤝 **团队协作** | 第9-12章 | Fork、PR、Issues、Projects、Wiki |
+| ⭐ **社交功能** | 第13-16章 | Star、Follow、README、开源协议 |
+| 🤖 **AI 与自动化** | 第17-20章 | Token、AI 自动化、Actions、Pages |
+| 🔒 **网络安全** | 第21-24章 | 安全问题、SSH、2FA、密钥管理 |
+| 🎓 **资深玩家** | 第25-28章 | Git 高级、CLI、API、最佳实践 |
+| ☁️ **云端与社区** | 第29-30章 | Codespaces、Discussions |
+| 📎 **附录 A-E** | 项目结构、Git 命令速查、Actions 市场、Jekyll 主题、Conventional Commits |
 
-### 🌟 第二阶段：基础操作（日常使用）
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [第5章：下载代码（Clone & Download）](docs/chapter05-download-code.md) | 三种下载方式、区别、适用场景 | ✅ 已完成 |
-| [第6章：提交更改（Commit）](docs/chapter06-commit-changes.md) | 什么是提交、如何写提交信息 | ✅ 已完成 |
-| [第7章：分支管理（Branch）](docs/chapter07-branch-management.md) | 为什么需要分支、如何创建切换 | ✅ 已完成 |
-| [第8章：合并代码（Merge）](docs/chapter08-merge-code.md) | 合并分支、解决冲突 | ✅ 已完成 |
-
-### 🤝 第三阶段：团队协作（多人开发）
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [第9章：Fork 与 Pull Request](docs/chapter09-fork-pr.md) | 如何给开源项目贡献代码 | ✅ 已完成 |
-| [第10章：Issues 使用指南](docs/chapter10-issues-guide.md) | 报告 Bug、提出建议 | ✅ 已完成 |
-| [第11章：Projects 与项目管理](docs/chapter11-projects-management.md) | 看板、里程碑、任务分配 | ✅ 已完成 |
-| [第12章：Wiki 与文档](docs/chapter12-wiki-documentation.md) | 编写项目文档 | ✅ 已完成 |
-
-### ⭐ 第四阶段：社交功能（开源社区）
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [第13章：Star 的意义](docs/chapter13-star-meaning.md) | 点星星代表什么、如何获取星星 | ✅ 已完成 |
-| [第14章：Follow 与社交](docs/chapter14-follow-social.md) | 关注用户、动态推送 | ✅ 已完成 |
-| [第15章：README 编写艺术](docs/chapter15-readme-art.md) | 如何写出吸引人的项目介绍 | ✅ 已完成 |
-| [第16章：开源协议选择](docs/chapter16-license-choice.md) | MIT、GPL、Apache 等协议的区别 | ✅ 已完成 |
-
-### 🤖 第五阶段：AI 与自动化（进阶技巧）
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [第17章：GitHub Token 完全指南](docs/chapter17-token-guide.md) | Personal Access Token 的生成与使用 | ✅ 已完成 |
-| [第18章：让 AI 操控你的 GitHub](docs/chapter18-ai-automation.md) | 使用 Token 让 AI 助手管理项目 | ✅ 已完成 |
-| [第19章：GitHub Actions 入门](docs/chapter19-actions-intro.md) | 自动化构建、测试、部署 | ✅ 已完成 |
-| [第20章：GitHub Pages 搭建网站](docs/chapter20-pages-website.md) | 免费托管个人博客或项目官网 | ✅ 已完成 |
-
-### 🔒 第六阶段：网络安全（重要！）
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [第21章：常见安全问题](docs/chapter21-security-issues.md) | 敏感信息泄露、钓鱼攻击 | ✅ 已完成 |
-| [第22章：SSH Key 配置](docs/chapter22-ssh-key-setup.md) | 更安全的身份验证方式 | ✅ 已完成 |
-| [第23章：两步验证（2FA）](docs/chapter23-2fa-setup.md) | 保护账号安全 | ✅ 已完成 |
-| [第24章：私钥与密钥管理](docs/chapter24-key-management.md) | 如何安全管理 Token、密钥 | ✅ 已完成 |
-
-### 🎓 第七阶段：资深玩家（高级特性）
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [第25章：Git 高级命令](docs/chapter25-git-advanced.md) | Rebase、Cherry-pick、Bisect | ✅ 已完成 |
-| [第26章：GitHub CLI 使用](docs/chapter26-gh-cli.md) | 命令行管理 GitHub | ✅ 已完成 |
-| [第27章：GitHub API 详解](docs/chapter27-github-api.md) | 使用 API 开发工具 | ✅ 已完成 |
-| [第28章：企业级最佳实践](docs/chapter28-best-practices.md) | 大型项目的协作流程 | ✅ 已完成 |
-
-### ☁️ 第八阶段：云端与社区（新增）
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [第29章：GitHub Codespaces](docs/chapter29-codespaces.md) | 云开发环境 | ✅ 已完成 |
-| [第30章：GitHub Discussions](docs/chapter30-discussions.md) | 社区讨论与问答 | ✅ 已完成 |
-
-### 📎 附录
-
-| 章节 | 内容 | 状态 |
-|------|------|------|
-| [附录A：项目文件组成说明](docs/appendix-a-project-structure.md) | 各文件的作用与规范 | ✅ 已完成 |
-| [附录B：Git 命令速查表](docs/appendix-b-git-commands.md) | 常用 Git 命令快速查找 | ✅ 已完成 |
-| [附录C：GitHub Actions 市场](docs/appendix-c-actions-marketplace.md) | 推荐 Actions 与模板 | ✅ 已完成 |
-| [附录D：Jekyll 主题推荐](docs/appendix-d-jekyll-themes.md) | GitHub Pages 主题选择 | ✅ 已完成 |
-| [附录E：Conventional Commits](docs/appendix-e-conventional-commits.md) | 提交信息规范 | ✅ 已完成 |
+> 📑 **完整章节索引**请查看 [docs/index.md](docs/index.md)（在线版首页）
 
 ## 🎯 快速开始
 
@@ -121,7 +55,7 @@
 
 ## 💡 特色功能
 
-- ✅ **结构清晰**：28章按学习路径组织，循序渐进
+- ✅ **结构清晰**：30章按学习路径组织，循序渐进
 - ✅ **实战案例**：真实场景演示，配有可运行代码
 - ✅ **常见问题**：每章都有 FAQ 和实战练习
 - ✅ **中英文对照**：重要术语附带英文原文

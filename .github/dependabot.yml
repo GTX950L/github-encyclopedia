@@ -1,0 +1,13 @@
+# Auto-created Dependabot config file
+# More info: https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+  # Keep GitHub Actions up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "ci"
+      - "dependencies"
