@@ -326,6 +326,73 @@ GIF 展示：
 
 ---
 
+### 4️⃣ Shields.io 徽章工厂 🏭
+
+**Shields.io** 是 GitHub 上使用最广泛的徽章生成服务，可以轻松创建各种状态徽章。
+
+#### 静态徽章
+
+```markdown
+![自定义徽章](https://img.shields.io/badge/项目状态-稳定-green)
+![自定义徽章](https://img.shields.io/badge/语言-Python-blue)
+![自定义徽章](https://img.shields.io/badge/许可证-MIT-yellow)
+```
+
+**URL 格式**：`https://img.shields.io/badge/{标签}-{值}-{颜色}`
+
+| 颜色名 | 色值 | 适用场景 |
+|--------|------|----------|
+| `green` | 🟢 | 稳定、完成、通过 |
+| `yellow` | 🟡 | 中等、需要关注 |
+| `orange` | 🟠 | 警告 |
+| `red` | 🔴 | 错误、失败 |
+| `blue` | 🔵 | 信息、默认 |
+| `lightgrey` | ⚪ | 次要、中性 |
+
+#### 动态徽章
+
+Shields.io 可以从各种数据源自动更新：
+
+```markdown
+# GitHub 元数据
+![GitHub stars](https://img.shields.io/github/stars/GTX950L/github-encyclopedia)
+![GitHub last commit](https://img.shields.io/github/last-commit/GTX950L/github-encyclopedia)
+![GitHub issues](https://img.shields.io/github/issues/GTX950L/github-encyclopedia)
+![GitHub license](https://img.shields.io/github/license/GTX950L/github-encyclopedia)
+
+# CI/CD 状态
+![Build status](https://img.shields.io/github/actions/workflow/status/GTX950L/github-encyclopedia/ci.yml)
+
+# 代码质量
+![Code coverage](https://img.shields.io/codecov/c/github/GTX950L/github-encyclopedia)
+```
+
+#### 其他常用徽章服务
+
+| 服务 | 用途 | 示例 |
+|------|------|------|
+| [Shields.io](https://shields.io) | 通用徽章生成器 | 最常用 |
+| [Visitor Badge](https://visitorbadge.io) | 访客计数徽章 | ![Visitors](https://api.visitorbadge.io/api/visitors?path=GTX950L%2Fgithub-encyclopedia) |
+| [Star History](https://star-history.com) | Star 增长趋势图 | 项目受欢迎程度 |
+| [Contrib.rocks](https://contrib.rocks) | 贡献者头像墙 | 感谢贡献者 |
+| [GitHub Profile Summary](https://github-profile-summary.com) | 个人资料统计 | 综合统计卡片 |
+| [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) | 动态统计卡片 | 在 Profile README 中显示 |
+
+#### 实战：在 README 中添加徽章
+
+```markdown
+<p align="center">
+  <img src="https://img.shields.io/badge/语言-Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/许可证-MIT-yellow?style=for-the-badge" />
+  <img src="https://img.shields.io/github/stars/GTX950L/项目名?style=for-the-badge" />
+  <img src="https://img.shields.io/github/last-commit/GTX950L/项目名?style=for-the-badge" />
+</p>
+```
+
+> 💡 `style=for-the-badge` 让徽章变大、更醒目。其他样式：`flat`（默认）、`flat-square`、`plastic`。
+
+---
+
 ## 常见问题
 
 ### Q1: README 应该多长？

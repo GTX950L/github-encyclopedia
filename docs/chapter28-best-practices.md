@@ -294,6 +294,112 @@ jobs:
 
 ---
 
+## 📋 CODEOWNERS（代码负责人）
+
+### 什么是 CODEOWNERS？
+
+**CODEOWNERS** 是 GitHub 的一个机制，可以为不同文件/目录**指定负责人**。当有人修改这些文件时，对应的负责人会自动被要求审查 PR。
+
+### 配置方式
+
+在仓库根目录或 `docs/` 目录创建 `CODEOWNERS` 文件：
+
+```
+# .github/CODEOWNERS
+
+# 全局负责人（整个仓库）
+* @GTX950L
+
+# 前端代码由前端团队负责
+/src/components/ @frontend-team
+
+# API 文档由后端团队负责
+/docs/api/ @backend-team
+
+# 配置文件由 DevOps 团队负责
+*.yml @devops-team
+*.yaml @devops-team
+Dockerfile @devops-team
+
+# 测试文件由所有人负责（不自动指派）
+/tests/ @team-lead @qa-team
+```
+
+### 效果
+
+```
+当你提交一个修改 src/components/Button.tsx 的 PR：
+│
+├── 自动指派 @frontend-team 作为 Reviewer
+├── 他们收到通知
+├── 必须有人批准才能合并
+└── 保护分支规则生效
+```
+
+> 💡 CODEOWNERS 也可以结合分支保护规则使用：勾选 "Require approval from code owners" 来强制要求负责人批准。
+
+---
+
+## 🏷️ Semantic PR（语义化 PR）
+
+### 为什么要语义化？
+
+语义化 PR 让项目历史更加清晰，也方便自动生成变更日志。
+
+### PR 标题格式
+
+```
+<类型>(<范围>): <简短描述>
+
+# 示例
+feat: 添加用户登录功能
+fix(api): 修复登录接口超时
+docs: 更新 README 安装说明
+refactor: 重构数据库查询逻辑
+```
+
+### 常见类型
+
+| 类型 | 含义 | 是否影响版本号 |
+|------|------|-------------|
+| `feat` | 新功能 | 次版本号+1 |
+| `fix` | Bug 修复 | 修订号+1 |
+| `docs` | 文档更新 | 不改变 |
+| `style` | 代码格式（不影响功能） | 不改变 |
+| `refactor` | 重构（不修 Bug 不加功能） | 不改变 |
+| `test` | 添加测试 | 不改变 |
+| `chore` | 构建/工具链变更 | 不改变 |
+| `perf` | 性能优化 | 不改变 |
+| `ci` | CI/CD 配置变更 | 不改变 |
+
+### 配合 Semantic Release 自动发布
+
+```yaml
+# .github/workflows/release.yml
+name: Semantic Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+> 💡 **推荐**：在 PR 模板中提示提交者使用语义化格式，或者在 CI 中自动检查 PR 标题是否符合格式。
+
+---
+
 ## 权限管理
 
 ### 企业级权限配置
@@ -452,7 +558,7 @@ jobs:
 ---
 
 <p align="center">
-  <b>🎉 全书完！</b><br>
-  感谢阅读《GitHub 百科全书》<br>
-  祝你在开源之路上越走越远！🚀
+  <b>🎉 下一站：云端与社区！</b><br>
+  继续阅读 <a href="chapter29-codespaces.md">第29章：Codespaces 云开发</a><br>
+  或者 <a href="chapter30-discussions.md">第30章：Discussions 社区</a>
 </p>

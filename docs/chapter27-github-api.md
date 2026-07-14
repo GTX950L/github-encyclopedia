@@ -364,6 +364,131 @@ python3 gh-stats.py
 
 ---
 
+## 🔷 GraphQL API（新版 API）
+
+### 什么是 GraphQL？
+
+除了 REST API，GitHub 还提供了 **GraphQL API**（v4），它可以让你**精确获取想要的数据**，不多不少。
+
+### REST vs GraphQL
+
+| 对比 | REST API | GraphQL API |
+|------|----------|-------------|
+| **版本** | v3 | v4 |
+| **数据量** | 返回固定数据（可能过多或不足） | ✅ 精确指定要什么字段 |
+| **请求次数** | 可能需要多次请求 | ✅ 一次请求获取所有数据 |
+| **学习曲线** | ⭐ 简单 | ⭐⭐ 中等 |
+| **推荐场景** | 简单操作、脚本 | 复杂查询、工具开发 |
+
+### 示例对比
+
+**场景**：获取你的仓库名和 Star 数
+
+#### REST 方式（先获取用户，再获取每个仓库）
+
+```bash
+# 第1步：获取所有仓库（返回很多不需要的字段）
+curl -H "Authorization: Bearer ghp_xxx" \
+  https://api.github.com/user/repos
+
+# 第2步：从返回的 JSON 中提取仓库名和 Star 数
+# 返回了一堆你可能不需要的字段
+```
+
+#### GraphQL 方式（精确指定你要的字段）✅
+
+```bash
+# 一次请求，精确查询
+curl -H "Authorization: Bearer ghp_xxx" \
+  -H "Content-Type: application/json" \
+  -X POST https://api.github.com/graphql \
+  -d '{
+    "query": "{
+      viewer {
+        repositories(first: 10) {
+          nodes {
+            name
+            stargazerCount
+          }
+        }
+      }
+    }"
+  }'
+```
+
+**响应**（只有你要的字段）：
+
+```json
+{
+  "data": {
+    "viewer": {
+      "repositories": {
+        "nodes": [
+          {"name": "github-encyclopedia", "stargazerCount": 100},
+          {"name": "my-tool", "stargazerCount": 42}
+        ]
+      }
+    }
+  }
+}
+```
+
+### 在 Python 中使用 GraphQL
+
+```python
+import requests
+
+token = "ghp_你的token"
+headers = {
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json"
+}
+
+# 查询：获取你的仓库名、Star 数、主要语言
+query = """
+{
+  viewer {
+    repositories(first: 50, orderBy: {field: STARGAZERS, direction: DESC}) {
+      nodes {
+        name
+        stargazerCount
+        primaryLanguage {
+          name
+        }
+        description
+      }
+    }
+  }
+}
+"""
+
+response = requests.post(
+    "https://api.github.com/graphql",
+    headers=headers,
+    json={"query": query}
+)
+
+data = response.json()
+for repo in data["data"]["viewer"]["repositories"]["nodes"]:
+    lang = repo["primaryLanguage"]["name"] if repo["primaryLanguage"] else "N/A"
+    print(f"⭐ {repo['name']} ({repo['stargazerCount']} stars, {lang})")
+```
+
+### 什么时候用 REST，什么时候用 GraphQL？
+
+| 场景 | 推荐 |
+|------|------|
+| **简单操作**（创建 Issue、合并 PR） | REST ✅ |
+| **复杂查询**（获取仓库和所有关联数据） | GraphQL ✅ |
+| **写脚本** | REST（更简单） |
+| **开发工具** | GraphQL（更高效） |
+| **需要兼容旧代码** | REST |
+| **新项目新功能** | GraphQL |
+
+> 💡 **GitHub 官方推荐**：尽量使用 GraphQL API，但 REST API 仍然完全支持，不会弃用。
+
+---
+
 ## 常见问题
 
 ### Q1: API 返回的时区是什么？

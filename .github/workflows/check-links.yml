@@ -1,0 +1,41 @@
+# 链接检查 — 自动检测 docs/*.md 中的内部链接是否失效
+name: Check Links
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**/*.md'
+      - 'README.md'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/**/*.md'
+      - 'README.md'
+  schedule:
+    - cron: '0 0 * * 0'  # 每周日凌晨检查一次
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Link Checker (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >
+            --config .lychee.toml
+            --verbose
+            --no-progress
+            './**/*.md'
+            './**/*.html'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail on broken links
+        if: failure()
+        run: |
+          echo "❌ 发现失效链接！请检查上面的报告并修复。"
+          exit 1

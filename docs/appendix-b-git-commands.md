@@ -134,15 +134,18 @@ git commit -m "fix: 解决合并冲突"
 
 ```bash
 # 1. 立即修改/删除敏感信息
-# 2. 从历史中彻底删除
-git filter-branch --force --index-filter \
-  "git rm --cached --ignore-unmatch 敏感文件" \
-  --prune-empty --tag-name-filter cat -- --all
+# 2. 从历史中彻底删除（推荐使用 git-filter-repo）
+#    先安装：pip install git-filter-repo
 
-# 3. 强制推送
+# 删除某个文件的所有历史记录
+git filter-repo --path 敏感文件 --invert-paths
+
+# 3. 强制推送（重新添加远程并推送）
+git remote add origin https://github.com/用户名/仓库.git
 git push --force --all
 ```
 
+> ⚠️ `git filter-branch` 已废弃，请使用 `git filter-repo`（更快、更安全）。
 > ⚠️ 如果敏感信息已被他人看到，请立即更换密码/Token！
 
 ---

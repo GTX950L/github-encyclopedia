@@ -102,4 +102,11 @@ site/
 *.cache
 *.backup
 *.tmp
+
+# Jekyll / GitHub Pages
+Gemfile.lock
+vendor/
+.sass-cache/
+.jekyll-cache/
+_site/
 ```

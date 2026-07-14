@@ -313,6 +313,127 @@ is:issue is:open label:bug author:GTX950L
 
 ---
 
+## 🎯 进阶技巧：Issue Forms（表单模板）
+
+### 什么是 Issue Forms？
+
+Issue Forms 是 **新一代的 Issue 模板**，使用 YAML 格式定义。相比传统的 Markdown 模板，它更加结构化，提交者填写起来也更方便。
+
+### 与传统模板对比
+
+| 特性 | Markdown 模板 | Issue Forms（YAML 表单） |
+|------|---------------|------------------------|
+| **填写方式** | 自由文本（容易格式混乱） | 表单输入（结构化） |
+| **必填字段** | 无法强制 | ✅ 可以设置必填 |
+| **下拉选择** | ❌ 不支持 | ✅ 支持 |
+| **复选框** | 手写 Markdown | ✅ 原生支持 |
+| **使用难度** | ⭐ 简单 | ⭐⭐ 中等 |
+
+### 创建 Issue Forms
+
+#### 文件位置
+
+```
+.github/ISSUE_TEMPLATE/
+├── bug_report.yml     ← YAML 格式
+├── feature_request.yml
+└── config.yml
+```
+
+#### 示例：Bug Report 表单
+
+```yaml
+# .github/ISSUE_TEMPLATE/bug_report.yml
+name: 🐛 Bug 报告
+description: 提交 Bug 帮助我们改进
+title: "[Bug]: "
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你提交 Bug 报告！请尽量提供完整信息。
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本号
+      description: 你正在使用的版本是什么？
+      placeholder: "v1.0.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug 描述
+      description: 请清晰描述这个 Bug
+      placeholder: 登录按钮点击后无反应...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      description: 如何复现这个 Bug？
+      placeholder: |
+        1. 打开网站
+        2. 点击登录按钮
+        3. 页面无响应
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      multiple: true
+      options:
+        - Windows 11
+        - macOS Sonoma
+        - Ubuntu 24.04
+        - 其他
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 检查清单
+      options:
+        - label: 我已经搜索过已有的 Issues，没有重复
+          required: true
+        - label: 我正在使用最新版本
+          required: false
+```
+
+### 效果
+
+```
+当你创建 Issue 时，会看到这样的页面：
+┌─────────────────────────────────────┐
+│ 🐛 Bug 报告                          │
+│                                     │
+│ 版本号 *                             │
+│ [___________v1.0.0__________]       │
+│                                     │
+│ Bug 描述 *                           │
+│ [描述这个 Bug...                   ] │
+│                                     │
+│ 复现步骤 *                           │
+│ [1. 打开网站                       ] │
+│                                     │
+│ 操作系统                             │
+│ [▼ Windows 11     ] [+]             │
+│                                     │
+│ ☑ 我已经搜索过已有的 Issues           │
+└─────────────────────────────────────┘
+```
+
+> 💡 **YAML 表单的字段类型**：`input`（单行文本）、`textarea`（多行文本）、`dropdown`（下拉选择）、`checkboxes`（复选框）、`markdown`（说明文字）
+
+---
+
 ## 📝 实战练习
 
 ### 练习1：创建第一个 Issue

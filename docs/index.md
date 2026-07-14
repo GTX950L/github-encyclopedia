@@ -67,6 +67,13 @@
 | 第 27 章 | [GitHub API](./chapter27-github-api.md) | REST API、自动化脚本 |
 | 第 28 章 | [最佳实践](./chapter28-best-practices.md) | 代码规范、协作礼仪 |
 
+### 云端与社区
+
+| 章节 | 内容 | 说明 |
+|------|------|------|
+| 第 29 章 | [Codespaces 云开发](./chapter29-codespaces.md) | 云端开发环境配置 |
+| 第 30 章 | [Discussions 社区](./chapter30-discussions.md) | 社区讨论与问答 |
+
 ---
 
 ## 附录
@@ -75,6 +82,7 @@
 - [附录 B：常用 Git 命令速查](./appendix-b-git-commands.md)
 - [附录 C：Actions Marketplace 推荐](./appendix-c-actions-marketplace.md)
 - [附录 D：Jekyll 主题推荐](./appendix-d-jekyll-themes.md)
+- [附录 E：Conventional Commits 规范](./appendix-e-conventional-commits.md)
 
 ---
 

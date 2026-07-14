@@ -90,6 +90,13 @@
 | [第27章：GitHub API 详解](docs/chapter27-github-api.md) | 使用 API 开发工具 | ✅ 已完成 |
 | [第28章：企业级最佳实践](docs/chapter28-best-practices.md) | 大型项目的协作流程 | ✅ 已完成 |
 
+### ☁️ 第八阶段：云端与社区（新增）
+
+| 章节 | 内容 | 状态 |
+|------|------|------|
+| [第29章：GitHub Codespaces](docs/chapter29-codespaces.md) | 云开发环境 | ✅ 已完成 |
+| [第30章：GitHub Discussions](docs/chapter30-discussions.md) | 社区讨论与问答 | ✅ 已完成 |
+
 ### 📎 附录
 
 | 章节 | 内容 | 状态 |
@@ -98,6 +105,7 @@
 | [附录B：Git 命令速查表](docs/appendix-b-git-commands.md) | 常用 Git 命令快速查找 | ✅ 已完成 |
 | [附录C：GitHub Actions 市场](docs/appendix-c-actions-marketplace.md) | 推荐 Actions 与模板 | ✅ 已完成 |
 | [附录D：Jekyll 主题推荐](docs/appendix-d-jekyll-themes.md) | GitHub Pages 主题选择 | ✅ 已完成 |
+| [附录E：Conventional Commits](docs/appendix-e-conventional-commits.md) | 提交信息规范 | ✅ 已完成 |
 
 ## 🎯 快速开始
 
@@ -131,8 +139,8 @@
 
 ## 📊 项目统计
 
-- 📚 总章节数：28 章 + 4 个附录
-- 📝 总字数：约 17 万字
+- 📚 总章节数：30 章 + 5 个附录
+- 📝 总字数：约 20 万字
 - 📦 快速入门：附带 [快速入门指南](docs/quick-start.md)
 - 👥 贡献者：欢迎加入！
 
@@ -157,7 +165,9 @@ AI与自动化 → 生成Token → 配置Actions → 部署Pages
   ↓
 资深玩家 → Git高级命令 → GitHub CLI → API开发
   ↓
-附录 → 项目文件规范 → Git命令速查 → Actions市场
+云端与社区 → Codespaces → Discussions
+  ↓
+附录 → 项目文件规范 → Git命令速查 → Actions市场 → Jekyll主题 → 提交信息规范
 ```
 
 ## ❓ 常见问题
@@ -207,5 +217,5 @@ A: 太好了！请在 [Issues](https://github.com/GTX950L/github-encyclopedia/is
 <p align="center">
   <i>让每个人都能轻松使用 GitHub</i>
   <br>
-  <sub>最后一更新：2026年6月</sub>
+  <sub>最后更新：2026年7月</sub>
 </p>

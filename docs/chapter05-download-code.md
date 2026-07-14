@@ -453,6 +453,63 @@ git clone https://你的用户名:你的token@github.com/用户名/仓库名.git
 
 ---
 
+### Q6: 我只想下载仓库中的某个目录，可以吗？
+
+**A**: ✅ **可以！** 使用 `sparse-checkout`（稀疏检出）。
+
+**适用场景**：
+- 仓库很大（如 monorepo），你只需要其中一部分
+- 节省磁盘空间和下载时间
+
+```bash
+# 第1步：不带文件地克隆
+git clone --no-checkout https://github.com/用户名/仓库名.git
+cd 仓库名
+
+# 第2步：启用 sparse-checkout
+git sparse-checkout init --cone
+
+# 第3步：指定你要的目录
+git sparse-checkout set src/ docs/
+
+# 第4步：检出文件
+git checkout main
+```
+
+> 💡 这样只会下载 `src/` 和 `docs/` 两个目录，其他文件不会下载到本地。
+
+---
+
+### Q7: 仓库里有大文件，不想每次都下载怎么办？
+
+**A**: 使用 **Git LFS（Large File Storage）**。
+
+**什么是 Git LFS？**
+
+Git LFS 把大文件（如 `.psd`、`.mp4`、`.zip`）替换为文本指针，实际内容存储在远程服务器。
+
+**安装配置**：
+
+```bash
+# 安装 Git LFS
+git lfs install
+
+# 在仓库中跟踪大文件类型
+git lfs track "*.psd"
+git lfs track "*.zip"
+
+# 提交跟踪规则
+git add .gitattributes
+git commit -m "Add LFS tracking"
+
+# 推送时自动上传大文件
+git push origin main
+```
+
+> 💡 **适用场景**：游戏开发（3D模型）、设计素材（PSD/AI文件）、数据集（CSV/JSON）、二进制包（.exe/.dmg）
+
+---
+
 ## 📝 实战练习
 
 ### 练习1：下载你的第一个开源项目

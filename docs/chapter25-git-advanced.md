@@ -247,6 +247,60 @@ git reset --hard i7j8k9l  # 恢复！
 
 ---
 
+## Worktree（工作树）🌳
+
+### 什么是 Worktree？
+
+**Worktree** 允许你在同一个仓库中**同时检出多个分支**到不同的目录。
+
+### 为什么需要？
+
+```
+场景：你正在 feature 分支上开发新功能
+突然发现 main 分支有个紧急 Bug 要修...
+│
+├── ❌ 旧办法：
+│   ├── 暂存当前修改（git stash）
+│   ├── 切到 main 分支
+│   ├── 修复 Bug
+│   ├── 切回 feature 分支
+│   └── 恢复暂存（git stash pop）
+│
+└── ✅ 用 Worktree：
+    ├── git worktree add ../fix-bug main
+    ├── 在另一个目录修复 Bug
+    └── 修完后删除 worktree
+    → 你的 feature 分支纹丝不动！
+```
+
+### 基本操作
+
+```bash
+# 创建一个 worktree（在另一目录检出 main 分支）
+git worktree add ../项目名-fix-bug main
+
+# 创建基于当前分支的 worktree
+git worktree add ../项目名-feature feature/login
+
+# 列出所有 worktree
+git worktree list
+
+# 输出：
+# /path/main-project        (main)
+# /path/main-project-fix    (abc1234) [fix/critical-bug]
+# /path/main-project-feat   (def5678) [feature/login]
+
+# 使用完后删除 worktree
+git worktree remove ../项目名-fix-bug
+
+# 清理已经删除的 worktree 记录
+git worktree prune
+```
+
+> 💡 **最佳实践**：Worktree 名称建议用 `{项目名}-{分支名}` 的格式，一眼就能看出哪个 worktree 对应哪个分支。
+
+---
+
 ## Submodule（子模块）📦
 
 ### 什么是 Submodule？

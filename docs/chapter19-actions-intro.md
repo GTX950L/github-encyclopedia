@@ -219,6 +219,89 @@ jobs:
 
 ---
 
+## ⚠️ Actions 安全最佳实践
+
+### 1. 固定 Action 版本
+
+```yaml
+# ❌ 不安全：使用 main 分支（可能被篡改）
+uses: actions/checkout@main
+
+# ✅ 安全：固定主版本
+uses: actions/checkout@v4
+
+# ✅ 最安全：固定完整 commit SHA
+uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+```
+
+### 2. 使用最小权限原则
+
+```yaml
+# 在 workflow 级别指定权限
+permissions:
+  contents: read        # 只读代码（默认有写权限）
+  issues: write         # 需要写 Issue
+  pull-requests: read   # 只读 PR
+```
+
+### 3. 谨慎使用第三方 Actions
+
+```yaml
+# 使用第三方 Action 前检查：
+# ✅ Star 数高（说明使用的人多）
+# ✅ 最近有更新（说明在维护）
+# ✅ 是 Verified Creator（GitHub 认证）
+# ✅ 有安全审计记录
+
+# 推荐：优先使用 GitHub 官方 Actions
+uses: actions/checkout@v4
+uses: actions/setup-node@v4
+uses: actions/cache@v4
+```
+
+### 4. 限制 Workflow 触发器
+
+```yaml
+# ❌ 不安全：任何 push 都触发
+on: [push]
+
+# ✅ 安全：只监听特定分支和路径
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/**'
+```
+
+### 5. 保护敏感信息
+
+```yaml
+# ✅ 使用 secrets 存储敏感信息
+- name: Deploy
+  run: deploy-script.sh
+  env:
+    API_KEY: ${{ secrets.API_KEY }}  # 不会出现在日志中
+
+# ❌ 不要在 workflow 中硬编码
+- name: Bad
+  run: deploy-script.sh --api-key "my-secret-key"  # 日志可见！
+```
+
+### 6. 使用 Dependabot 自动更新 Actions
+
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+```
+
+---
+
 ## 常见问题
 
 ### Q1: Actions 的免费额度是多少？

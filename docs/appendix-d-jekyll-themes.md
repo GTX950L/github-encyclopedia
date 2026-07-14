@@ -95,6 +95,115 @@ plugins:
 
 ---
 
+## 🔄 Jekyll 的替代方案
+
+除了 Jekyll，GitHub Pages 还支持其他静态网站生成器。如果你的需求超出了 Jekyll 的能力，可以考虑这些方案：
+
+### 1. Hugo（Go 语言）⚡
+
+**优点**：
+- 🚀 **速度极快**（比 Jekyll 快 10-100 倍）
+- 🌍 **社区活跃**，主题丰富
+- 💪 **功能强大**（内置 SEO、多语言、分页等）
+- 📝 **无需 Ruby 环境**，一个二进制文件搞定
+
+**缺点**：
+- 📚 学习曲线比 Jekyll 陡峭
+- 🧩 模板语法（Go Templates）需要额外学习
+
+**适合**：大型文档网站、博客、企业官网
+
+```bash
+# 安装 Hugo
+# macOS: brew install hugo
+# Windows: winget install Hugo.Hugo
+
+# 创建新站点
+hugo new site my-blog
+cd my-blog
+
+# 添加主题
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+echo "theme = 'ananke'" >> hugo.toml
+
+# 创建第一篇文章
+hugo new content posts/my-first-post.md
+
+# 本地预览
+hugo server -D
+```
+
+### 2. MkDocs（Python）📘
+
+**优点**：
+- 📝 **Markdown 原生支持**（比 Jekyll 更自然）
+- 🎨 **Material for MkDocs 主题**（非常漂亮，中文友好）
+- 🔍 **内置搜索功能**
+- 🐍 **Python 用户友好**
+
+**缺点**：
+- ⚙️ 功能不如 Hugo 丰富
+- 📦 依赖 Python 生态
+
+**适合**：项目文档、API 文档、技术手册
+
+```bash
+# 安装 MkDocs
+pip install mkdocs mkdocs-material
+
+# 创建新站点
+mkdocs new my-docs
+cd my-docs
+
+# 编辑 mkdocs.yml
+echo "site_name: 我的文档" > mkdocs.yml
+echo "theme:" >> mkdocs.yml
+echo "  name: material" >> mkdocs.yml
+
+# 本地预览
+mkdocs serve
+
+# 构建
+mkdocs build
+```
+
+### 3. VuePress / VitePress（JavaScript）💚
+
+**优点**：
+- 💚 **Vue 生态**（VuePress）或 **Vite 生态**（VitePress）
+- ⚡ **极快的热更新**
+- 🧩 **强大的插件系统**
+- 🎯 **适合前端开发者**
+
+**缺点**：
+- 📦 需要 Node.js 环境
+- 👥 社区相对 Jekyll 小
+
+**适合**：前端项目文档、组件库文档
+
+```bash
+# VitePress（推荐 VuePress 的新项目用这个）
+npm create vitepress@latest my-docs
+cd my-docs
+npm run docs:dev
+```
+
+### 如何选择？
+
+| 你的情况 | 推荐方案 |
+|---------|---------|
+| **零配置，GitHub 原生支持** | Jekyll ✅ |
+| **大型文档网站（上千页面）** | Hugo ⚡ |
+| **项目文档，追求外观** | MkDocs + Material 🎨 |
+| **前端开发者** | VitePress 💚 |
+| **Python 用户** | MkDocs 🐍 |
+| **Go 语言用户** | Hugo 🚀 |
+
+> 💡 所有这些生成器都可以通过 GitHub Actions 自动部署到 Pages。详见 [第20章：Pages 搭建网站](../docs/chapter20-pages-website.md)。
+
+---
+
 ## 🔗 更多资源
 
 - [GitHub Pages 官方主题预览](https://pages.github.com/themes/)
@@ -106,5 +215,5 @@ plugins:
 <p align="right">
   <a href="appendix-c-actions-marketplace.md">← 附录C：Actions 市场</a>
   &nbsp;|&nbsp;
-  <a href="../README.md">返回首页 →</a>
+  <a href="appendix-e-conventional-commits.md">附录E：Conventional Commits →</a>
 </p>

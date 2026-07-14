@@ -106,49 +106,135 @@ curl -X POST \
 
 ### 什么是 GitHub Copilot？
 
-**GitHub Copilot** 是 GitHub 官方的 AI 助手。
+**GitHub Copilot** 是 GitHub 官方的 AI 编程助手。
 
-| 功能 | 说明 |
-|------|------|
-| **代码补全** | 根据上下文自动补全代码 |
-| **代码解释** | 选中代码，Copilot 解释它是做什么的 |
-| **生成提交信息** | 根据修改自动生成 Commit Message |
-| **代码审查** | 自动审查 PR |
-
----
-
-### 安装 GitHub Copilot
-
-#### 在 VS Code 中安装
-
-```
-1. 打开 VS Code
-2. 进入扩展市场（Ctrl+Shift+X）
-3. 搜索 "GitHub Copilot"
-4. 点击 Install
-5. 登录 GitHub 账号
-6. 完成！
-```
+| 版本 | 适用场景 | 价格 |
+|------|---------|------|
+| **Copilot Individual** | 个人开发者 | $10/月（有免费试用） |
+| **Copilot Business** | 企业团队 | $19/用户/月 |
+| **Copilot Enterprise** | 大型企业 | $39/用户/月 |
+| **Copilot Free** | 个人学习 | ✅ 免费 |
 
 ---
 
-### 使用 Copilot 管理 GitHub
+### Copilot 的各个功能
 
-#### 生成提交信息 ✅
+#### 1️⃣ 代码补全（Code Completion）
 
-```
-1. 修改代码后，按 Ctrl+Enter
-2. Copilot 会建议提交信息
-3. 选择合适的，按 Enter
-4. 完成提交！
-```
-
-#### 代码审查
+Copilot 最基础的功能。你写注释或代码开头，它自动补全剩余部分。
 
 ```
-1. 在 PR 页面，点击 Copilot 图标
-2. Copilot 会自动审查代码
-3. 提出改进建议
+// 在 VS Code 中输入：
+function calculateTotal(prices) {
+    // Copilot 会自动补全：
+    return prices.reduce((sum, price) => sum + price, 0);
+}
+```
+
+**使用技巧**：
+- ✍️ **写清晰的注释** — Copilot 根据注释生成代码
+- 🧩 **写函数签名** — 好的参数名 + 返回类型，Copilot 更准确
+- 🔍 **打开相关文件** — Copilot 会参考你打开的其他文件
+
+#### 2️⃣ Copilot Chat（对话式 AI）
+
+**Copilot Chat** 让你可以和 AI 对话，而不仅仅是补全代码。
+
+```
+在 VS Code 中按 Ctrl+Shift+I 打开 Chat：
+
+你：这段代码有什么问题？
+Copilot：第5行变量名拼写错误，第12行缺少空指针检查...
+
+你：帮我写一个二分查找的测试用例
+Copilot：以下是使用 pytest 的测试用例...
+```
+
+**Chat 能做的事情**：
+- 🔍 **代码审查**：选中代码 → 让 Copilot 审查
+- 📖 **代码解释**：选中看不懂的代码 → 让 Copilot 解释
+- 🐛 **调试帮助**：粘贴报错 → 让 Copilot 分析原因
+- ♻️ **重构建议**：选中代码 → 让 Copilot 提改善方案
+
+#### 3️⃣ Copilot Workspace（AI 工作区）
+
+**Copilot Workspace** 是一个浏览器内的 AI 开发环境（预览功能）。
+
+```
+与传统开发的对比：
+
+传统开发：
+1. 手动创建 Issue
+2. 手动创建分支
+3. 手动写代码
+4. 手动提交 PR
+
+Copilot Workspace：
+1. 选择 Issue
+2. AI 分析 Issue 并生成修改方案
+3. 你审查并微调 AI 的修改
+4. 一键提交 PR
+```
+
+#### 4️⃣ 内联代码审查（Code Review）
+
+在 PR 页面，Copilot 可以自动审查代码变更：
+
+```
+1. 打开一个 PR 页面
+2. 在 "Files changed" 标签页
+3. 点击 Copilot 图标
+4. Copilot 会分析所有变更，给出审查意见
+
+审查内容包括：
+- 潜在的 Bug
+- 安全漏洞
+- 性能问题
+- 代码风格建议
+```
+
+---
+
+### Copilot 使用技巧
+
+#### 技巧1：用注释引导 AI
+
+```python
+# ❌ 不好：没有注释，Copilot 猜不准
+def process(data):
+    pass
+
+# ✅ 好：注释清晰，Copilot 知道你要什么
+def process(data):
+    """清洗数据：去除空值、标准化格式、排序"""
+    # Copilot 会生成：
+    data = [d for d in data if d is not None]
+    data = [normalize(d) for d in data]
+    return sorted(data)
+```
+
+#### 技巧2：利用上下文窗口
+
+Copilot 会参考你当前打开的**所有文件**来生成代码。所以：
+- ✅ 打开相关文件（接口定义、测试文件）
+- ❌ 关掉不需要的文件（避免干扰）
+
+#### 技巧3：多个建议中选择
+
+```python
+# 按 Ctrl+Enter 查看更多建议
+# 然后选择最合适的
+```
+
+#### 技巧4：用 Copilot 写测试
+
+```
+# 给一个函数写测试
+def test_calculate_total():
+    # Copilot 会自动补全测试用例
+    assert calculate_total([10, 20, 30]) == 60
+    assert calculate_total([]) == 0
+    assert calculate_total([-5, 10]) == 5
 ```
 
 ---
@@ -359,7 +445,8 @@ AI 权限设置：
 
 - ✅ AI 可以帮你做哪些 GitHub 任务
 - ✅ 如何配置 WorkBuddy 管理 GitHub
-- ✅ 如何使用 GitHub Copilot
+- ✅ GitHub Copilot 的各个功能（补全、Chat、Workspace、Review）
+- ✅ Copilot 使用技巧和最佳实践
 - ✅ 如何自己编写 AI 脚本
 - ✅ 安全风险和注意事项
 
@@ -368,6 +455,8 @@ AI 权限设置：
 > **AI 是助手，不是替代品。**
 > 
 > 让 AI 帮你处理重复性任务，但关键的代码审查和决策，还是要人类来做。
+> 
+> **Copilot 推荐配置**：Copilot Free（免费版）足够个人日常使用，Copilot Chat 是提升效率的关键功能。
 
 ---
 

@@ -1,0 +1,30 @@
+# GitHub 使用百科全书 — Jekyll 配置
+# GitHub Pages 会自动读取此文件
+
+title: GitHub 使用百科全书
+description: >-
+  从新手到资深玩家的完整指南 — 全中文、免费、开源
+author: GTX950L
+
+# 使用 GitHub Pages 内置主题
+theme: jekyll-theme-cayman
+
+# 网站 URL（如有自定义域名则修改）
+url: "https://gtx950l.github.io"
+baseurl: "/github-encyclopedia"
+
+# 使用 docs/ 目录作为网站源
+source: docs
+
+# 插件
+plugins:
+  - jekyll-remote-theme  # 支持远程主题
+  - jekyll-seo-tag       # SEO 优化
+
+# 排除非页面文件
+exclude:
+  - README.md
+  - "*.py"
+  - "*.sh"
+  - node_modules/
+  - vendor/

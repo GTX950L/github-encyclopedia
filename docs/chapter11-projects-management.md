@@ -215,6 +215,70 @@ Action: Set field value
 
 ---
 
+## 🆕 Projects v2（新版项目管理）
+
+GitHub 在 2023 年推出了 **Projects v2**（新版 Project），比传统 Projects 更强大。
+
+### 与传统 Projects 的对比
+
+| 特性 | 传统 Projects | Projects v2（新版） |
+|------|-------------|-------------------|
+| **视图方式** | 只有看板 | 📊 表格 + 📋 看板 + 📅 日历 |
+| **自定义字段** | 有限 | ✅ 丰富（文本、数字、日期、迭代） |
+| **筛选器** | 基础 | ✅ 强大（类似 Excel 筛选） |
+| **分组** | ❌ 不支持 | ✅ 按任意字段分组 |
+| **外部仓库** | 可以 | ✅ 原生支持 |
+| **Insights** | ❌ 无 | ✅ 统计图表 |
+| **适合** | 简单任务 | 复杂项目管理 |
+
+### 创建 Projects v2
+
+```
+1. 点击仓库顶部导航的 Projects → Projects (classic) 旁边的下拉
+2. 点击 "New project"
+3. 选择模板：Board（看板）或 Table（表格）
+4. 设置项目名称
+5. 点击 "Create"
+```
+
+### 表格视图（推荐）✅
+
+表格视图是 Projects v2 的默认视图，看起来像 Excel：
+
+| 标题 | 状态 | 优先级 | 迭代 | 负责人 | 截止日期 |
+|------|------|--------|------|--------|---------|
+| 修复登录 Bug | ✅ Done | 🔴 High | Sprint 1 | @GTX950L | 2026-06-15 |
+| 添加支付功能 | 🔄 In progress | 🔴 High | Sprint 1 | @小明 | 2026-06-20 |
+| 性能优化 | ⏳ Todo | 🟡 Medium | Sprint 2 | @小红 | 2026-06-30 |
+
+### 强大的筛选功能
+
+```
+Projects v2 支持类似 GitHub Issues 的筛选语法：
+
+# 只显示高优先级的任务
+priority:High
+
+# 只显示某个迭代的任务
+iteration:"Sprint 1"
+
+# 组合筛选
+status:"In progress" priority:High
+```
+
+### 统计图表（Insights）
+
+Projects v2 内置了统计功能：
+- 📊 **燃尽图**：追踪 Sprint 进度
+- 📈 **状态分布**：Todo / In Progress / Done 占比
+- 🏷️ **标签统计**：各类型工作的分布
+
+```
+进入 Project → Insights 标签 → 创建图表
+```
+
+---
+
 ## 常见问题
 
 ### Q1: Project 和 Milestone 有什么区别？

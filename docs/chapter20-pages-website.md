@@ -108,6 +108,95 @@ git push origin main
 
 ---
 
+## 🚀 自动部署：GitHub Actions + Pages
+
+手动推送静态文件太麻烦？用 Actions 自动部署吧！
+
+### 场景1：静态网站（HTML/CSS/JS）
+
+```yaml
+# .github/workflows/deploy-pages.yml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'   # 你的网站文件目录
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+### 场景2：Jekyll 网站
+
+```yaml
+name: Deploy Jekyll to Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Install Jekyll
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build site
+        run: bundle exec jekyll build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy
+        uses: actions/deploy-pages@v4
+```
+
+### 配置 Pages 部署来源
+
+```
+Settings → Pages → Build and deployment
+↓
+Source: GitHub Actions（推荐！）
+```
+
+> 💡 使用 Actions 部署比直接用分支更灵活，支持更多构建步骤。
+
+---
+
 ## 自定义域名
 
 ### 为什么需要？

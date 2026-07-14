@@ -483,7 +483,7 @@ AI 会为你生成所有文件！
 ---
 
 <p align="right">
-  <a href="chapter16-license-choice.md">← 上一章</a>
+  <a href="chapter30-discussions.md">← 上一章</a>
   &nbsp;|&nbsp;
   <a href="appendix-b-git-commands.md">下一章 →</a>
 </p>
