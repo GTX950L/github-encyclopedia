@@ -83,6 +83,7 @@
 - [附录 C：Actions Marketplace 推荐](./appendix-c-actions-marketplace.md)
 - [附录 D：Jekyll 主题推荐](./appendix-d-jekyll-themes.md)
 - [附录 E：Conventional Commits 规范](./appendix-e-conventional-commits.md)
+- [附录 F：GitHub Sponsors 开源赞助指南](./appendix-f-sponsors.md)
 
 ---
 

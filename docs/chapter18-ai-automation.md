@@ -239,6 +239,110 @@ def test_calculate_total():
 
 ---
 
+## 🚀 AI 前沿：Agent Mode 与 MCP 协议
+
+### GitHub Copilot Agent Mode
+
+2025 年起，Copilot 从"代码补全"进化为**自主编程 Agent**：
+
+```
+传统模式：你写代码 → Copilot 补全下一行
+Agent 模式：你说需求 → Copilot 理解 → 写代码 → 建文件 → 跑命令 → 修 bug
+```
+
+**Agent Mode 能做什么**：
+- 🧠 理解自然语言需求，自动完成多文件修改
+- 💻 自动执行终端命令（`npm install`、`git commit` 等）
+- 🔄 运行时错误自愈（检测报错 → 分析原因 → 修复代码 → 重试）
+- 🔌 通过 MCP 协议扩展工具链（调用 GitHub API、数据库、浏览器等）
+
+**支持的模型**（可自选）：
+- OpenAI GPT-4o（默认基础模型）
+- Anthropic Claude 3.5/3.7 Sonnet
+- Google Gemini 2.0 Flash
+
+### MCP（Model Context Protocol）协议
+
+MCP 是 Anthropic 提出、被 GitHub/VS Code/Cursor 广泛采用的**开放协议**，相当于 AI 的"USB 接口"。
+
+```
+┌─────────────────┐     ┌──────────────────┐
+│                 │     │  GitHub MCP      │
+│                 │────▶│  Server          │───▶ 搜索仓库、创建 Issue
+│                 │     └──────────────────┘
+│   AI 助手       │     ┌──────────────────┐
+│                 │────▶│  数据库 MCP      │───▶ 查询数据表
+│  (Agent Mode)   │     └──────────────────┘
+│                 │     ┌──────────────────┐
+│                 │────▶│  浏览器 MCP      │───▶ 网页截图、操作
+└─────────────────┘     └──────────────────┘
+```
+
+#### GitHub 官方 MCP Server
+
+GitHub 于 2025 年 4 月开源了官方的 **GitHub MCP Server**，让 AI 工具可以通过 MCP 协议操作 GitHub：
+
+**能力矩阵**：
+- 🔍 搜索仓库和代码
+- 📝 创建和管理 Issues
+- 🔀 创建/审查/合并 PR
+- ⚡ 查看 Actions 状态
+- 👥 读取用户信息
+
+**配置示例**（VS Code 的 `.vscode/mcp.json`）：
+
+```json
+{
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer YOUR_PAT"
+      }
+    }
+  }
+}
+```
+
+或者使用 Docker 运行本地 MCP Server：
+
+```bash
+docker run -i --rm \
+  -e GITHUB_PERSONAL_ACCESS_TOKEN \
+  ghcr.io/github/github-mcp-server
+```
+
+#### WorkBuddy 中的 GitHub MCP（你的实战场景）
+
+WorkBuddy 内置 GitHub 连接器（基于 MCP 协议），直接在对话中对接 GitHub API：
+
+| 操作 | 需要权限 | 备注 |
+|------|---------|------|
+| 搜索仓库、读取文件 | 读权限 | ✅ 默认可用 |
+| 创建 Issue、评论 | 写权限 | 需配置 `contents:write` |
+| 创建/更新文件 | 写权限 | 需配置 Fine-grained PAT |
+| 提交 PR | 写权限 | 需配置 Full repo scope |
+
+**配置建议**：
+- 使用 **Fine-grained PAT**（细粒度令牌），限制到具体仓库和权限
+- 只授予必要的最小权限（最小权限原则）
+- 定期轮换 Token
+
+#### Cursor 等 AI IDE 的 GitHub 集成
+
+除了 GitHub Copilot，其他 AI IDE 也深度集成了 GitHub：
+
+| 工具 | 特点 | GitHub 集成方式 |
+|------|------|----------------|
+| **Cursor** | Composer + Agent 模式 | 直接登录 GitHub，支持 PR/Issue |
+| **Windsurf** | 流式 AI 编辑 | GitHub 登录 + API 操作 |
+| **CodeBuddy** | WorkBuddy 内置 | MCP 连接器 + PAT 认证 |
+
+**趋势总结**：所有 AI 工具都在走向 **Agent 化 + MCP 协议化 + GitHub 深度集成**。
+
+---
+
 ## 自己编写 AI 脚本
 
 ### 示例：让 AI 自动审查 PR

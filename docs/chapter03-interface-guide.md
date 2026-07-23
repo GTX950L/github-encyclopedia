@@ -377,22 +377,58 @@
 
 ---
 
-## 移动端界面
+## 移动端界面（GitHub Mobile）
 
-GitHub 有官方移动 App（iOS 和 Android）。
+GitHub 有官方移动 App「**GitHub Mobile**」，支持 iOS 和 Android，可在 App Store / Google Play 搜索安装。
 
-### 移动端功能
+### 核心功能（2026年最新）
 
-- ✅ 查看通知
-- ✅ 阅读和评论 Issue/PR
-- ✅ 审查和合并 PR
-- ❌ 不支持复杂代码编辑
+| 功能 | 说明 |
+|------|------|
+| 🔔 **通知管理** | 查看、筛选、处理所有通知（@提及、PR 审查请求等） |
+| 🔍 **代码浏览** | 全局代码搜索、仓库内文件浏览、语法高亮 |
+| ✅ **PR 审查** | 浏览变更文件 → 行内评论 → 批准/请求修改 |
+| 🛠️ **Issue 管理** | 创建、编辑、分配、评论 Issue，支持子问题 |
+| 🤖 **Copilot 集成** | Copilot Chat 问答 + Coding Agent 分配任务 + Copilot Code Review |
+| 🔒 **2FA 验证** | 手机端确认二步验证登录请求 |
+| 📊 **Projects 查看** | 查看项目看板和任务进度 |
+| 📱 **Universal Links** | 在手机点击 GitHub 链接自动跳转 App |
+
+### Copilot 在移动端的演进
+
+2025-2026 年 GitHub Mobile 最重大的更新是 Copilot 能力的大幅增强：
+
+```
+2025.06 — Copilot Coding Agent 公开预览（手机端分配 Issue 给 AI）
+2025.07 — Copilot Code Review GA（手机端自动审查 PR）
+2025.09 — Agent Tasks 管理（在手机上启动/跟踪 AI 任务）
+2026.02 — 模型选择器（GPT-4o / Claude / Gemini 可在手机切换）
+2026.04 — Copilot Tab 重新设计（底部导航栏固定，原生 Session Logs）
+```
+
+**实际使用场景**：
+- 在路上收到 PR 审查请求 → 打开 App → Copilot 自动给出审查意见
+- 有一个紧急 Bug → 用手机创建 Issue → 分配给 Copilot Agent → AI 自动处理
+- 在手机上查看 Agent 的完整执行日志（Session Logs）
+
+### 切换分支和标签
+
+在移动端同样可以查看不同分支的代码：
+
+```
+打开仓库 → 顶部下拉选择 Branch（🌿 按钮）
+→ 选择要查看的分支
+→ 浏览该分支的文件
+```
 
 ### 推荐使用场景
 
-- 📱 在通勤路上查看通知
-- 📱 快速回复评论
-- 📱 紧急合并重要的 PR
+- 🚇 通勤路上查看通知、筛选未读
+- 💬 快速回复 Issue/PR 评论
+- 🚨 紧急审查并合并重要 PR
+- 🤖 启动 Copilot Agent 处理后台任务
+
+> 💡 **小贴士**：GitHub Mobile + Copilot Agent 的组合非常强大——你在路上就能让 AI 开始工作，到工位时 PR 已经准备好了。
 
 ---
 

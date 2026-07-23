@@ -484,29 +484,122 @@ git checkout main
 
 **A**: 使用 **Git LFS（Large File Storage）**。
 
-**什么是 Git LFS？**
+Git LFS 是 Git 的扩展，专门解决二进制大文件的版本管理问题。
 
-Git LFS 把大文件（如 `.psd`、`.mp4`、`.zip`）替换为文本指针，实际内容存储在远程服务器。
+#### Git 管理大文件的痛点
 
-**安装配置**：
+Git 对文本文件（源代码）管理极好，但对二进制大文件效率极低——**每次修改都会保存完整副本**，导致：
 
-```bash
-# 安装 Git LFS
-git lfs install
+- 仓库体积快速膨胀
+- Clone 变得极慢
+- 磁盘空间大量浪费
 
-# 在仓库中跟踪大文件类型
-git lfs track "*.psd"
-git lfs track "*.zip"
+#### Git LFS 的工作原理
 
-# 提交跟踪规则
-git add .gitattributes
-git commit -m "Add LFS tracking"
+```
+传统 Git：  [.psd v1] [.psd v2] [.psd v3]  ← 每次修改都存完整文件
+                                            ← 仓库爆炸式增长
 
-# 推送时自动上传大文件
-git push origin main
+Git LFS：   [指针 v1] [指针 v2] [指针 v3]   ← 仓库中只存指针（几十字节）
+              ↓         ↓         ↓
+            [LFS 服务器]                   ← 真正的大文件存远程
 ```
 
-> 💡 **适用场景**：游戏开发（3D模型）、设计素材（PSD/AI文件）、数据集（CSV/JSON）、二进制包（.exe/.dmg）
+**在 Git 仓库中只存指针文件**，大文件实际内容存储在远程 LFS 服务器，按需下载。
+
+#### 安装 Git LFS
+
+```bash
+# Windows（Git for Windows 已内置 Git LFS）
+git lfs install    # 运行一次即可
+
+# 验证安装
+git lfs version    # 输出示例：git-lfs/3.4.0
+```
+
+> macOS: `brew install git-lfs`  
+> Linux: `sudo apt install git-lfs`（Ubuntu） / `sudo dnf install git-lfs`（Fedora）
+
+#### 基本使用流程
+
+```bash
+# 第1步：告诉 LFS 要管理哪些文件类型
+git lfs track "*.psd"          # 所有 .psd 文件
+git lfs track "*.zip"          # 所有 .zip 文件
+git lfs track "assets/**"      # assets 目录下所有文件
+git lfs track "*.bin" --filename  # 单个文件
+
+# 第2步：提交 .gitattributes（追踪规则文件）
+git add .gitattributes
+git commit -m "配置 Git LFS 追踪规则"
+
+# 第3步：像平常一样 add/commit/push
+git add design.psd
+git commit -m "添加设计稿"
+git push origin main   # LFS 文件会自动上传到服务器
+```
+
+#### 查看和管理 LFS 文件
+
+```bash
+git lfs track          # 查看当前追踪规则
+git lfs ls-files       # 列出仓库中由 LFS 管理的文件
+git lfs pull           # 拉取 LFS 文件（clone 后需单独执行）
+git lfs prune          # 清理本地缓存的旧版本 LFS 文件
+```
+
+#### 克隆包含 LFS 文件的仓库
+
+```bash
+# 方式1：普通 clone + 拉取 LFS
+git clone https://github.com/用户名/仓库名.git
+cd 仓库名
+git lfs pull                    # 拉取 LFS 管理的文件
+
+# 方式2：clone 时自动拉取 LFS
+GIT_LFS_SKIP_SMUDGE=0 git clone https://github.com/用户名/仓库名.git
+
+# 方式3：跳过 LFS 文件（只下载指针，适合只想看代码）
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/用户名/仓库名.git
+git lfs pull --include="*.psd"  # 按需下载具体类型
+```
+
+#### 历史仓库迁移
+
+已有仓库想将大文件迁移到 LFS：
+
+```bash
+# 迁移所有 .psd 文件（包括历史提交）
+git lfs migrate import --include="*.psd" --everything
+
+# 迁移所有大于 100MB 的文件
+git lfs migrate import --above="100MB" --everything
+
+# 查看迁移后节省的空间
+git lfs migrate info --everything
+```
+
+> ⚠️ **警告**：迁移会重写 Git 历史（改变提交 SHA），需要团队协调后执行。迁移前最好创建备份。
+
+#### GitHub LFS 配额
+
+| 计划 | LFS 存储空间 | 单文件限制 |
+|------|------------|-----------|
+| **Free** | 1 GB | ≤ 2 GB |
+| **Pro** | 2 GB | ≤ 2 GB |
+| **Team** | 50 GB | ≤ 2 GB |
+| **Enterprise** | 100 GB+ | ≤ 2 GB |
+
+超出可购买额外存储包（$5/月 50GB）。
+
+#### 适用场景
+
+| 适合 LFS | 不适合 LFS |
+|---------|-----------|
+| 设计稿（PSD/AI/Sketch） | 源代码文件 |
+| 图片/视频素材 | 小型配置文件 |
+| 数据集/模型文件 | 文本/日志文件 |
+| 二进制安装包 | 频繁变更的小文件 |
 
 ---
 

@@ -37,7 +37,7 @@
 | 🔒 **网络安全** | 第21-24章 | 安全问题、SSH、2FA、密钥管理 |
 | 🎓 **资深玩家** | 第25-28章 | Git 高级、CLI、API、最佳实践 |
 | ☁️ **云端与社区** | 第29-30章 | Codespaces、Discussions |
-| 📎 **附录 A-E** | 项目结构、Git 命令速查、Actions 市场、Jekyll 主题、Conventional Commits |
+| 📎 **附录 A-F** | 项目结构、Git 命令速查、Actions 市场、Jekyll 主题、Conventional Commits、Sponsors |
 
 > 📑 **完整章节索引**请查看 [docs/index.md](docs/index.md)（在线版首页）
 
