@@ -73,7 +73,7 @@ console.log(hello());
 
 ## 🤝 贡献
 
-欢迎贡献！请查看 [CONTRIBUTING.md](CONTRIBUTING.md)。
+欢迎贡献！请查看 [CONTRIBUTING.md](../CONTRIBUTING.md)。
 
 ## 📜 许可证
 
@@ -424,7 +424,7 @@ README.zh-CN.md  ← 中文版
 在英文 README 开头加上：
 
 ```markdown
-[🇨🇳 English](README.md) | [🇨🇳 中文](README.zh-CN.md)
+[🇬🇧 English](../README.md) | [🇨🇳 中文](./chapter15-readme-art.md)
 ```
 
 ---

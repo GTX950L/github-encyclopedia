@@ -192,7 +192,7 @@ A: ✅ 支持！已内置类型定义。
 
 ## 🤝 贡献
 
-欢迎贡献！请查看 [CONTRIBUTING.md](CONTRIBUTING.md)。
+欢迎贡献！请查看 [CONTRIBUTING.md](../CONTRIBUTING.md)。
 ```
 
 ---

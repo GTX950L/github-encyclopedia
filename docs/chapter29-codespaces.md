@@ -168,6 +168,130 @@ Codespaces 默认提供了这些工具：
 
 ---
 
+### 🚀 高级 devcontainer 配置
+
+#### 1️⃣ Dockerfile 自定义镜像
+
+如果预置镜像不满足需求，可以用 Dockerfile 完全自定义环境：
+
+```json
+// .devcontainer/devcontainer.json
+{
+  "name": "Custom Python Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VARIANT": "3.12"
+    }
+  },
+  "extensions": ["ms-python.python"],
+  "postCreateCommand": "pip install -r requirements.txt"
+}
+```
+
+配套的 Dockerfile：
+
+```dockerfile
+# .devcontainer/Dockerfile
+ARG VARIANT=3.12
+FROM mcr.microsoft.com/devcontainers/python:${VARIANT}
+
+# 安装系统级依赖
+RUN apt-get update && apt-get install -y \
+    postgresql-client \
+    redis-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装全局 Python 工具
+RUN pip install --upgrade pip poetry
+```
+
+#### 2️⃣ Docker Compose 多容器
+
+前后端分离或需要数据库时，定义多容器环境：
+
+```json
+// .devcontainer/devcontainer.json
+{
+  "name": "Web App with Database",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "extensions": ["ms-python.python", "mtxr.sqltools"]
+}
+```
+
+配套的 docker-compose.yml：
+
+```yaml
+# .devcontainer/docker-compose.yml
+version: "3.8"
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/python:3.12
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: myapp
+    ports:
+      - "5432:5432"
+```
+
+#### 3️⃣ Devcontainer Features（开箱即用的功能）
+
+Features 是预构建的功能模块，可以直接添加到 devcontainer 配置中：
+
+```json
+{
+  "name": "Full Stack Dev",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  }
+}
+```
+
+**常用 Features**：
+| Feature | 用途 |
+|---------|------|
+| `docker-in-docker` | 在容器内使用 Docker |
+| `node` | 安装指定版本 Node.js |
+| `github-cli` | 预装 gh 命令行 |
+| `aws-cli` | AWS 命令行工具 |
+| `terraform` | 基础设施即代码 |
+| `sshd` | SSH 远程连接 |
+
+#### 4️⃣ 生命周期钩子
+
+不同阶段自动执行命令：
+
+```json
+{
+  "name": "Auto Setup",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  // 创建容器后执行（一次）
+  "postCreateCommand": "pip install -r requirements.txt && pre-commit install",
+  // 容器启动后执行（每次）
+  "postStartCommand": "git pull --rebase",
+  // 附加到容器后执行
+  "postAttachCommand": "echo 'Ready!'"
+}
+```
+
+> 💡 **原理**：`postCreateCommand` 只在首次创建时运行，`postStartCommand` 每次启动运行。
+
 ## 实用技巧
 
 ### 1. 端口转发

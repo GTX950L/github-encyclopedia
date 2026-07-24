@@ -8,6 +8,7 @@
 - [生成 SSH Key](#生成-ssh-key)
 - [添加到 GitHub](#添加到-github)
 - [测试连接](#测试连接)
+- [GPG Commit 签名](#gpg-commit-签名)
 - [常见问题](#常见问题)
 
 ---
@@ -190,6 +191,103 @@ git remote -v
 ```
 
 **以后 `git push` 就不再需要输密码了！** 🎉
+
+---
+
+## 🔏 GPG Commit 签名
+
+### 什么是 GPG 签名？
+
+**GPG（GNU Privacy Guard）** 可以为你的 Commit 打上"数字签名"，证明这个提交确实是你本人做的，而不是别人冒充的。
+
+### 有没有签名有什么区别？
+
+```
+未签名的 Commit：                       已签名的 Commit：
+Author: GTX950L                         Author: GTX950L
+                                        GPG signature: ✅ Verified
+                                        
+在 GitHub 上，签名后的 Commit               
+会显示 ✅ Verified 绿色徽章                  
+```
+
+### 配置步骤
+
+#### 第1步：安装 GPG
+
+```bash
+# Windows 用户
+# 下载安装 Gpg4win: https://www.gpg4win.org/
+
+# macOS
+brew install gpg
+
+# Linux (Ubuntu/Debian)
+sudo apt install gpg
+```
+
+#### 第2步：生成 GPG Key
+
+```bash
+# 生成新 Key（按提示输入姓名和邮箱）
+gpg --full-generate-key
+
+# 推荐选项：
+# - 密钥类型：RSA and RSA (default)
+# - 密钥长度：4096
+# - 过期时间：0（永不过期）
+```
+
+#### 第3步：查看并导出公钥
+
+```bash
+# 列出你的 GPG Key
+gpg --list-secret-keys --keyid-format LONG
+
+# 输出示例（sec 后面的就是 Key ID）：
+# sec   rsa4096/ABC123DEF456GHIJ 2026-01-01
+# uid                 [ultimate] GTX950L <your@email.com>
+
+# 导出公钥（替换为你的 Key ID）
+gpg --armor --export ABC123DEF456GHIJ
+```
+
+#### 第4步：添加到 GitHub
+
+```
+1. 复制上面的公钥（从 -----BEGIN PGP PUBLIC KEY BLOCK----- 开始
+   到 -----END PGP PUBLIC KEY BLOCK----- 结束）
+2. 进入 GitHub Settings → SSH and GPG keys
+3. 点击 "New GPG key"
+4. 粘贴公钥 → 保存
+```
+
+#### 第5步：配置 Git 使用 GPG 签名
+
+```bash
+# 告诉 Git 使用哪个 Key
+git config --global user.signingkey ABC123DEF456GHIJ
+
+# 全局启用签名（所有 Commit 都自动签名）
+git config --global commit.gpgsign true
+
+# 或者只对特定项目启用
+cd your-project
+git config commit.gpgsign true
+```
+
+### 验证效果
+
+```bash
+# 创建并推送一个 Commit
+git commit -S -m "test: GPG 签名测试"
+git push
+
+# 在 GitHub 上查看这个 Commit →
+# 会显示 ✅ Verified 绿色徽章！
+```
+
+> 💡 **小贴士**：配置一次后，后续每次 commit 都会自动签名，你不需要额外操作。
 
 ---
 
