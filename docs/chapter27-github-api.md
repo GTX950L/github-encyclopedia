@@ -9,6 +9,8 @@
 - [常用 API 端点](#常用-api-端点)
 - [分页和限流](#分页和限流)
 - [示例：开发一个 CLI 工具](#示例开发一个-cli-工具)
+- [GraphQL API](#graphql-api)
+- [GraphQL 实战进阶](#graphql-实战进阶)
 - [常见问题](#常见问题)
 
 ---
@@ -489,6 +491,196 @@ for repo in data["data"]["viewer"]["repositories"]["nodes"]:
 
 ---
 
+### 🚀 GraphQL 实战进阶
+
+#### 1️⃣ 变更（Mutation）：创建 Issue
+
+GraphQL 不仅可以查询，还可以**修改数据**（Mutation）：
+
+```graphql
+mutation {
+  createIssue(input: {
+    repositoryId: "R_kgDON8K3tQ"  # 仓库 ID（可以通过查询获取）
+    title: "Bug: 页面加载失败"
+    body: "在 Chrome 浏览器中访问首页时白屏"
+    assigneeIds: ["MDQ6VXNlcjE="]
+    labelIds: ["LA_kwDON8K3tQ8AAAABkD"]
+  }) {
+    issue {
+      number
+      url
+      state
+    }
+  }
+}
+```
+
+Python 调用：
+
+```python
+mutation = """
+mutation($repo: ID!, $title: String!, $body: String) {
+  createIssue(input: {repositoryId: $repo, title: $title, body: $body}) {
+    issue { number url }
+  }
+}
+"""
+
+variables = {
+    "repo": "R_kgDON8K3tQ",
+    "title": "Bug: 页面加载失败",
+    "body": "详细描述..."
+}
+
+response = requests.post(
+    "https://api.github.com/graphql",
+    headers=headers,
+    json={"query": mutation, "variables": variables}
+)
+```
+
+> 💡 **如何找仓库 ID？** 查询 `{ repository(owner: "GTX950L", name: "github-encyclopedia") { id } }`
+
+#### 2️⃣ 游标分页（Cursor Pagination）
+
+REST 用 `page` + `per_page`，GraphQL 用 **游标（cursor）** 进行分页：
+
+```graphql
+{
+  viewer {
+    repositories(first: 10, after: "Y3Vyc29yOnYyOpHOA1Cz") {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        name
+        stargazerCount
+      }
+    }
+  }
+}
+```
+
+Python 自动翻页：
+
+```python
+def get_all_repos():
+    all_repos = []
+    cursor = None
+    has_next = True
+
+    while has_next:
+        query = """
+        query($cursor: String) {
+          viewer {
+            repositories(first: 100, after: $cursor) {
+              pageInfo { hasNextPage endCursor }
+              nodes { name stargazerCount description }
+            }
+          }
+        }
+        """
+        response = requests.post(
+            "https://api.github.com/graphql",
+            headers=headers,
+            json={"query": query, "variables": {"cursor": cursor}}
+        )
+        data = response.json()["data"]["viewer"]["repositories"]
+        all_repos.extend(data["nodes"])
+        has_next = data["pageInfo"]["hasNextPage"]
+        cursor = data["pageInfo"]["endCursor"]
+
+    print(f"共获取 {len(all_repos)} 个仓库")
+    return all_repos
+```
+
+#### 3️⃣ 嵌套查询（一次获取多层数据）
+
+GraphQL 的强大之处：一次请求获取**关联数据**：
+
+```graphql
+{
+  repository(owner: "GTX950L", name: "github-encyclopedia") {
+    name
+    stargazerCount
+    # 最近的 5 个 Issue
+    issues(first: 5, states: OPEN) {
+      nodes {
+        title
+        url
+        # Issue 的标签
+        labels(first: 3) {
+          nodes { name color }
+        }
+        # Issue 的创建者
+        author { login avatarUrl }
+      }
+    }
+    # 最近的 3 个 PR
+    pullRequests(first: 3, states: OPEN) {
+      nodes {
+        title
+        # PR 的审查状态
+        reviews(first: 3) {
+          nodes { state author { login } }
+        }
+      }
+    }
+    # 主要语言
+    primaryLanguage { name }
+    # 仓库主题
+    repositoryTopics(first: 5) {
+      nodes { topic { name } }
+    }
+  }
+}
+```
+
+**REST 要实现同样效果**：至少需要 5-6 次 API 调用。
+
+#### 4️⃣ 使用 GraphQL Explorer 尝试
+
+GitHub 提供了一个**浏览器内的 GraphQL 编辑器**：
+
+```
+1. 访问 https://docs.github.com/en/graphql/overview/explorer
+2. 点击 "Explorer" 按钮
+3. 在左侧编写查询，点击 ▶️ 运行
+4. 右侧即时显示结果
+
+功能：
+├── 自动补全（字段名、参数）
+├── 文档面板（查看所有可用字段）
+├── 语法高亮
+└── 历史记录
+```
+
+> 💡 **学习建议**：先在 Explorer 中测试查询，确认无误后再复制到代码中。
+
+#### 5️⃣ REST vs GraphQL 快速抉择
+
+```
+你要做什么?
+│
+├─ 创建/更新/删除数据
+│   └─ 都可以 → REST 更简单
+│
+├─ 获取单个资源（如某个 Issue）
+│   └─ 都可以 → REST 更直接
+│
+├─ 获取列表 + 关联数据（如仓库+Issue+PR+标签）
+│   └─ GraphQL ✅（一次请求搞定）
+│
+├─ 开发第三方工具/集成
+│   └─ GraphQL ✅（数据精确，性能好）
+│
+└─ 写一次性脚本
+    └─ REST ✅（curl 就能调）
+```
+
+---
+
 ## 常见问题
 
 ### Q1: API 返回的时区是什么？
@@ -609,6 +801,8 @@ requests.delete(
 - ✅ 常用 API 端点（用户、仓库、Issue、PR）
 - ✅ 如何处理分页和限流
 - ✅ 如何开发一个 CLI 工具
+- ✅ GraphQL 与 REST API 的区别和选择
+- ✅ GraphQL 查询、变更、游标分页、嵌套查询实战
 
 ### 💡 核心要点
 

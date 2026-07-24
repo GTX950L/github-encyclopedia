@@ -8,6 +8,8 @@
 - [什么是 GitHub Actions？](#什么是-github-actions)
 - [第一个 Workflow](#第一个-workflow)
 - [常用 Actions 示例](#常用-actions-示例)
+- [可复用工作流](#可复用工作流)
+- [GitHub Container Registry](#github-container-registry)
 - [常见问题](#常见问题)
 
 ---
@@ -219,6 +221,259 @@ jobs:
 
 ---
 
+## ♻️ 可复用工作流
+
+### 为什么需要可复用工作流？
+
+当多个项目需要相同的 CI/CD 流程时，**不要复制粘贴** —— 使用可复用工作流（Reusable Workflows）：
+
+```
+❌ 错误做法：
+├── project-a/.github/workflows/ci.yml（500 行）
+├── project-b/.github/workflows/ci.yml（复制粘贴，500 行）
+└── project-c/.github/workflows/ci.yml（复制粘贴，500 行）
+    → 改一个地方，三个都要改！
+
+✅ 正确做法：
+├── shared/.github/workflows/ci.yml（定义一次）
+├── project-a/.github/workflows/ci.yml（调用）
+├── project-b/.github/workflows/ci.yml（调用）
+└── project-c/.github/workflows/ci.yml（调用）
+    → 改一个地方，全部生效！
+```
+
+### 定义可复用工作流
+
+在被调用的仓库中创建工作流，加上 `workflow_call` 触发器：
+
+```yaml
+# .github/workflows/reusable-ci.yml（被调用方）
+name: Reusable CI
+
+on:
+  workflow_call:         # ✅ 关键：允许被其他工作流调用
+    inputs:              # 定义输入参数
+      node-version:
+        description: "Node.js 版本"
+        required: false
+        type: string
+        default: "20"
+    secrets:             # 定义需要传入的密钥
+      NPM_TOKEN:
+        required: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+      - run: npm ci
+      - run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run build
+```
+
+### 调用可复用工作流
+
+```yaml
+# project-a/.github/workflows/ci.yml（调用方）
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  call-ci:
+    uses: GTX950L/shared-workflows/.github/workflows/reusable-ci.yml@v1
+    with:
+      node-version: "22"
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+> 💡 **调用规范**：`uses: owner/repo/.github/workflows/file.yml@ref`
+> - `@v1`：按 tag 引用
+> - `@main`：按分支引用（不推荐，可能不稳定）
+> - `@abc123`：按 commit SHA 引用（最安全）
+
+### Composite Actions（复合 Action）
+
+如果不想整条工作流复用，只想复用**一组步骤**，用 Composite Action：
+
+```yaml
+# .github/actions/setup-project/action.yml
+name: "Setup Project"
+description: "安装依赖并运行 Lint"
+
+inputs:
+  node-version:
+    description: "Node.js 版本"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Run linter
+      shell: bash
+      run: npm run lint
+```
+
+在工作流中使用：
+
+```yaml
+steps:
+  - uses: actions/checkout@v4
+  - uses: ./.github/actions/setup-project
+    with:
+      node-version: "20"
+  - run: npm test
+```
+
+> 💡 **区别总结**：
+> | 特性 | Reusable Workflow | Composite Action |
+> |------|------------------|-----------------|
+> | 复用粒度 | 整个 Job | 一组 Step |
+> | 跨仓库调用 | ✅ 支持 | ❌ 仅限当前仓库 |
+> | 支持 `needs` | ✅ | ❌ |
+> | 适用场景 | 完整的 CI/CD 流程 | 重复的配置步骤 |
+
+---
+
+## 🐳 GitHub Container Registry
+
+### 什么是 Container Registry？
+
+**GitHub Container Registry（ghcr.io）** 是 GitHub 自带的 Docker 镜像仓库。你可以在 GitHub 上存储和分享 Docker 容器镜像，就像存放代码一样。
+
+### 为什么用 ghcr.io 而不是 Docker Hub？
+
+| 特性 | ghcr.io | Docker Hub |
+|------|---------|------------|
+| **和 GitHub 集成** | ✅ 原生集成 | ❌ 需要额外配置 |
+| **权限控制** | ✅ 使用仓库权限 | ❌ 独立权限系统 |
+| **免费额度** | ✅ 公开镜像无限流量 | ✅ 公开镜像无限 |
+| **匿名拉取** | ✅ 公开镜像无需登录 | ✅ 公开镜像无需登录 |
+| **国内访问** | ⚠️ 一般 | ⚠️ 一般 |
+
+### 推送镜像到 ghcr.io
+
+#### 第一步：创建 Personal Access Token
+
+```
+1. Settings → Developer settings → Personal access tokens → Fine-grained tokens
+2. 勾选权限：
+   ├── Contents: Read & Write
+   └── Packages: Read & Write
+3. 生成 Token 并保存
+```
+
+#### 第二步：登录 ghcr.io
+
+```bash
+echo $GITHUB_TOKEN | docker login ghcr.io -u GTX950L --password-stdin
+```
+
+#### 第三步：构建并推送镜像
+
+```bash
+# 构建镜像（标签格式：ghcr.io/用户名/仓库名:版本）
+docker build -t ghcr.io/GTX950L/my-app:latest .
+
+# 推送
+docker push ghcr.io/GTX950L/my-app:latest
+```
+
+#### 第四步：在 Actions 中自动构建推送
+
+```yaml
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - 'v*'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write  # ⚠️ 需要写入 packages 权限
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+```
+
+### 拉取镜像
+
+```bash
+# 公开镜像不需要登录
+docker pull ghcr.io/GTX950L/my-app:latest
+
+# 私有镜像需要登录
+echo $GITHUB_TOKEN | docker login ghcr.io -u GTX950L --password-stdin
+docker pull ghcr.io/GTX950L/private-app:latest
+```
+
+### 管理镜像
+
+```
+在 GitHub 网页上：
+1. 进入仓库页面
+2. 点击右侧 Packages 区域
+3. 可以查看、删除、设置镜像权限
+```
+
+> 💡 **小贴士**：ghcr.io 的镜像权限默认继承自仓库。私有仓库中的镜像也是私有的，公开仓库中的镜像也是公开的。
+
+---
+
 ## ⚠️ Actions 安全最佳实践
 
 ### 1. 固定 Action 版本
@@ -418,6 +673,8 @@ Settings → Actions → Runners → Add runner
 - ✅ 什么是 GitHub Actions
 - ✅ 如何创建第一个 Workflow
 - ✅ 常用 Actions 示例（测试、部署、发布）
+- ✅ 可复用工作流和 Composite Action 的区别与使用
+- ✅ 如何使用 GitHub Container Registry 管理 Docker 镜像
 - ✅ 如何调试失败的 Workflow
 
 ### 💡 核心要点

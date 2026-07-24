@@ -9,6 +9,10 @@
 - [代码审查规范](#代码审查规范)
 - [CI/CD 最佳实践](#cicd-最佳实践)
 - [Release 管理](#release-管理)
+- [CODEOWNERS 代码负责人](#codeowners-代码负责人)
+- [Semantic PR 语义化 PR](#semantic-pr-语义化-pr)
+- [权限管理](#权限管理)
+- [GitHub Enterprise](#github-enterprise)
 - [常见问题](#常见问题)
 
 ---
@@ -424,6 +428,128 @@ jobs:
 
 ---
 
+## 🏢 GitHub Enterprise
+
+### GitHub Enterprise 是什么？
+
+**GitHub Enterprise** 是 GitHub 的企业级解决方案，分为两种部署方式：
+
+| 方案 | 说明 | 适合 |
+|------|------|------|
+| **Enterprise Cloud** | GitHub 托管，SaaS 模式 | 不想自己维护服务器的公司 |
+| **Enterprise Server** | 自行部署到公司内网 | 需要数据本地化、有合规要求的公司 |
+
+### 为什么需要 Enterprise？
+
+```
+个人版/Team 版的局限：
+├── ❌ 用户数限制（Team 版最多 200 人）
+├── ❌ 权限管理不够细
+├── ❌ 没有 SAML/SSO 单点登录
+├── ❌ 审计日志不够全面
+└── ❌ 不能部署到内网
+
+Enterprise 版解决：
+├── ✅ 无限用户
+├── ✅ 细粒度权限（Repository Roles）
+├── ✅ SAML SSO / SCIM 用户同步
+├── ✅ 完整的审计日志（Audit Log）
+├── ✅ 合规认证（SOC 2、FedRAMP 等）
+└── ✅ 99.95% SLA 保障
+```
+
+### Enterprise Server 部署架构
+
+```
+┌─────────────────────────────────────────┐
+│           公司内网                        │
+│                                         │
+│  ┌───────────┐    ┌───────────┐         │
+│  │ 负载均衡器 │───→│ GitHub    │         │
+│  │ (HAProxy) │    │ App       │         │
+│  └───────────┘    │ Server ×N │         │
+│       │           └─────┬─────┘         │
+│       │                 │               │
+│  ┌───────────┐    ┌─────┴─────┐         │
+│  │ 用户请求   │    │ 数据库     │         │
+│  │ (DNS)     │    │ (MySQL)   │         │
+│  └───────────┘    └─────┬─────┘         │
+│                         │               │
+│                    ┌────┴────┐          │
+│                    │ 存储卷   │          │
+│                    │ (NFS)   │          │
+│                    └─────────┘          │
+└─────────────────────────────────────────┘
+```
+
+### Enterprise 关键功能
+
+#### 1. SAML SSO（单点登录）
+
+```
+企业员工用自己的公司账号（如 Okta、Azure AD）登录 GitHub：
+├── ✅ 不需要单独记密码
+├── ✅ 员工离职后自动禁用账号
+└── ✅ 统一密码策略
+```
+
+#### 2. 审计日志（Audit Log）
+
+记录所有操作，方便安全审计：
+
+```json
+{
+  "action": "repo.push",
+  "actor": "xiaoming",
+  "repo": "my-org/important-project",
+  "timestamp": "2026-07-24T08:30:00Z",
+  "ip": "192.168.1.100"
+}
+```
+
+#### 3. 策略管理
+
+```
+管理员可以设定全局策略：
+├── ✅ 只允许特定仓库类型（如必须私有）
+├── ✅ 强制分支保护规则
+├── ✅ 限制第三方 Actions 使用
+├── ✅ 要求 2FA 强制开启
+└── ✅ 代码推送必须签名
+```
+
+#### 4. Copilot Enterprise
+
+企业版 Copilot 额外提供：
+- **知识库定制**：基于公司内部代码库提供更准确的建议
+- **PR 自动总结**：AI 自动生成 PR 描述
+- **代码审查**：AI 辅助审查代码安全性和质量
+
+### 如何选择？
+
+```
+你们公司...？
+│
+├─ 人数 < 50，不需要特殊合规
+│   └─ Team 版就够了 → 不需要 Enterprise
+│
+├─ 人数 50-500，需要 SAML SSO
+│   └─ Enterprise Cloud → 省心
+│
+├─ 人数 > 500，需要审计日志
+│   └─ Enterprise Cloud → 功能全面
+│
+├─ 数据必须留在公司内网
+│   └─ Enterprise Server → 自部署
+│
+└─ 有 FedRAMP / 政府合规要求
+    └─ Enterprise Server → 满足合规
+```
+
+> 💡 大部分公司选择 **Enterprise Cloud**，因为不需要自己维护服务器。只有严格的合规要求才需要 Enterprise Server。
+
+---
+
 ## 常见问题
 
 ### Q1: 企业应该使用 Public 还是 Private 仓库？
@@ -537,6 +663,7 @@ jobs:
 - ✅ 代码审查的最佳实践
 - ✅ CI/CD 的企业级配置
 - ✅ 如何管理 Release 和版本号
+- ✅ GitHub Enterprise 的部署方式和适用场景
 
 ### 💡 核心要点
 
