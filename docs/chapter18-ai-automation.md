@@ -193,6 +193,41 @@ Copilot Workspace：
 - 代码风格建议
 ```
 
+#### 5️⃣ Copilot Extensions（Copilot 扩展）
+
+Copilot 支持通过扩展访问第三方工具和服务：
+
+```
+├── @docker       → 在聊天中操作 Docker 容器
+├── @sentinel     → 查询 GitHub 安全告警
+└── @github       → 获取仓库信息、创建 Issue
+```
+
+> 💡 在 Copilot 聊天中输入 `@扩展名 你的问题` 即可使用。
+
+---
+
+### GitHub Models（AI 模型市场）
+
+GitHub 提供了 **GitHub Models** 服务，让你可以直接在 GitHub 上体验和测试各种 AI 模型：
+
+```
+支持的模型：
+├── OpenAI GPT 系列（GPT-4o、GPT-4o-mini）
+├── Anthropic Claude 系列
+├── Meta Llama 系列
+├── Microsoft Phi 系列
+└── Mistral 系列
+
+使用方法：
+1. 访问 https://github.com/marketplace/models
+2. 选择一个模型
+3. 在 Playground 中测试
+4. 获取 API Key 集成到你的应用
+```
+
+> 💡 GitHub Models 提供了一个统一的入口来探索和使用 AI 模型，无需分别注册各个 AI 平台。
+
 ---
 
 ### Copilot 使用技巧

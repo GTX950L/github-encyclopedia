@@ -149,6 +149,27 @@ jobs:
 
 ---
 
+## 🔥 最受欢迎的 Actions（按使用量排名）
+
+以下是在 GitHub Marketplace 上使用量最高的 Actions（截至 2026年）：
+
+| 排名 | Action | 用途 | Star 数 |
+|------|--------|------|---------|
+| 🥇 | `actions/checkout` | 检出代码 | 6k+ |
+| 🥈 | `actions/setup-node` | 安装 Node.js | 4k+ |
+| 🥉 | `actions/setup-python` | 安装 Python | 3k+ |
+| 4 | `actions/cache` | 缓存依赖加速构建 | 5k+ |
+| 5 | `docker/build-push-action` | Docker 镜像构建推送 | 4k+ |
+| 6 | `peaceiris/actions-gh-pages` | 部署 GitHub Pages | 5k+ |
+| 7 | `github/codeql-action` | 代码安全扫描 | 3k+ |
+| 8 | `softprops/action-gh-release` | 创建 Release | 3k+ |
+| 9 | `codecov/codecov-action` | 上传覆盖率 | 2k+ |
+| 10 | `stefanzweifel/git-auto-commit-action` | 自动提交 | 2k+ |
+
+> 💡 **选择建议**：优先使用 Star 数高、更新活跃的官方或认证 Actions。
+
+---
+
 ## 🔍 如何查找更多 Actions
 
 1. 访问 [GitHub Actions Marketplace](https://github.com/marketplace?type=actions)

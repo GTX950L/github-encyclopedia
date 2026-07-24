@@ -10,6 +10,7 @@
 
 [![Visitors](https://api.visitorbadge.io/api/visitors?path=GTX950L%2Fgithub-encyclopedia&countColor=%23263759)](https://visitorbadge.io)
 [![GitHub last commit](https://img.shields.io/github/last-commit/GTX950L/github-encyclopedia)](https://github.com/GTX950L/github-encyclopedia/commits)
+[![GitHub Pages](https://img.shields.io/badge/📖%20在线阅读-gh--pages-blue?logo=github)](https://gtx950l.github.io/github-encyclopedia/)
 
 ## 🎯 项目简介
 
@@ -67,9 +68,10 @@
 
 1. ⭐ **点个星星**（Star）—— 让更多人看到
 2. 🍴 **Fork 一份** —— 改成适合你的版本
-3. 🐛 **报告问题** —— 发现错误请在 Issues 中提出
-4. 📝 **贡献内容** —— 欢迎提交 Pull Request
-5. 📢 **分享给朋友** —— 帮助更多新手
+3. 📖 **[在线阅读](https://gtx950l.github.io/github-encyclopedia/)** —— 在线版阅读体验更佳
+4. 🐛 **报告问题** —— 发现错误请在 Issues 中提出
+5. 📝 **贡献内容** —— 欢迎提交 Pull Request
+6. 📢 **分享给朋友** —— 帮助更多新手
 
 ## 📊 项目统计
 
@@ -81,6 +83,8 @@
 ## 🌟 Star 历史
 
 [![Star History Chart](https://api.star-history.com/svg?repos=GTX950L/github-encyclopedia&type=Date)](https://star-history.com/#GTX950L/github-encyclopedia&Date)
+
+> 💡 *Star 数积累后将自动生成历史趋势图。如果你觉得有用，点个 ⭐ 支持一下吧！*
 
 ## 🗺️ 学习路线图
 

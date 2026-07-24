@@ -463,6 +463,38 @@ echo $GITHUB_TOKEN | gh auth login --with-token
 
 ---
 
+### 5️⃣ gh extension（扩展机制）✅ 推荐！
+
+`gh` 支持通过扩展安装第三方功能，像包管理器一样丰富 CLI 生态。
+
+```bash
+# 查看已安装的扩展
+gh extension list
+
+# 安装扩展（示例：GitHub Copilot CLI）
+gh extension install github/gh-copilot
+
+# 使用 Copilot 扩展
+gh copilot suggest "解释这个脚本"
+
+# 卸载扩展
+gh extension remove gh-copilot
+
+# 更新所有扩展
+gh extension upgrade --all
+```
+
+**流行的 gh 扩展**：
+
+| 扩展 | 用途 |
+|------|------|
+| `github/gh-copilot` | 在终端中使用 GitHub Copilot |
+| `dlvhdr/gh-dash` | 终端仪表盘查看 PR 和 Issue |
+| `meiji163/gh-notify` | 终端通知查看器 |
+| `seachicken/gh-poi` | 清理已合并的分支 |
+
+---
+
 ## 📚 延伸阅读
 
 - [第17章：GitHub Token 完全指南](chapter17-token-guide.md) - Token 的详细用法

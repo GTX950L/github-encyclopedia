@@ -376,6 +376,40 @@ GitHub 首页 → "Based on your stars"
 
 ---
 
+## 🛠️ 用 CLI 和 API 管理你的 Star
+
+### 使用 gh CLI 查看和搜索 Star
+
+```bash
+# 查看你 Star 过的所有项目
+gh api user/starred --jq '.[].full_name'
+
+# 搜索 Star 列表中的特定项目（如 Python 项目）
+gh api user/starred --jq '.[] | select(.language == "Python") | .full_name'
+
+# 给仓库点 Star
+gh repo star 用户名/仓库名
+
+# 取消 Star
+gh repo unstar 用户名/仓库名
+```
+
+### 使用 API 批量管理 Star
+
+```python
+import requests
+
+# 获取用户 Star 列表
+headers = {"Authorization": "Bearer 你的Token"}
+response = requests.get("https://api.github.com/users/用户名/starred", headers=headers)
+for repo in response.json():
+    print(f"{repo['full_name']} - ⭐ {repo['stargazers_count']}")
+```
+
+> 💡 使用 CLI 或 API 管理 Star，可以快速筛选和整理你的收藏！
+
+---
+
 ## 常见问题
 
 ### Q1: 点 Star 会被作者知道吗？

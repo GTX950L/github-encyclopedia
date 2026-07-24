@@ -399,5 +399,5 @@ label:answered
 <p align="right">
   <a href="chapter29-codespaces.md">← 上一章</a>
   &nbsp;|&nbsp;
-  <a href="appendix-e-conventional-commits.md">附录E：Conventional Commits →</a>
+  <a href="appendix-a-project-structure.md">附录A：项目结构参考 →</a>
 </p>

@@ -80,6 +80,8 @@
 | `git bisect` | 二分查找 Bug | `git bisect start` |
 | `git tag` | 打标签 | `git tag -a v1.0 -m "版本1.0"` |
 | `git reflog` | 查看操作日志（救命用） | `git reflog` |
+| `git worktree` | 多分支并行工作区 | `git worktree add ../hotfix hotfix-branch` |
+| `git sparse-checkout` | 部分克隆（只下载指定文件） | `git sparse-checkout set src/ docs/` |
 
 ---
 

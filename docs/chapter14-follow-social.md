@@ -217,6 +217,38 @@ Follow！
 
 ---
 
+#### 🏆 Profile README（个人主页 README）
+
+**Profile README** 是一个特殊的仓库，它的 README 会展示在你的 GitHub 个人主页顶部。
+
+**如何创建**：
+1. 创建一个与你的 GitHub 用户名**同名**的仓库（如 `GTX950L/GTX950L`）
+2. 勾选 **Add a README file**
+3. 编辑 README.md，内容会自动显示在你的个人主页
+
+**内容建议**：
+
+```markdown
+# 你好，我是小明 👋
+
+## 🚀 关于我
+- 🔭 我正在做：开源项目 A
+- 🌱 正在学：Rust 和 WebAssembly
+- 👯 希望合作：Python 数据工具
+- 💬 可以问我：Python、Git、开源
+
+## 🛠️ 技术栈
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript)
+
+## 📊 GitHub 统计
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=你的用户名&show_icons=true)
+```
+
+> 💡 **效果**：别人访问你的主页时，第一眼就看到你的自我介绍、技术栈和项目统计，印象分直接拉满！
+
+---
+
 #### 2️⃣ 持续贡献
 
 ```

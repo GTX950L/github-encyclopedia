@@ -20,6 +20,7 @@ source: docs
 plugins:
   - jekyll-remote-theme  # 支持远程主题
   - jekyll-seo-tag       # SEO 优化
+  - jekyll-sitemap       # 自动生成 sitemap.xml
 
 # 排除非页面文件
 exclude:
